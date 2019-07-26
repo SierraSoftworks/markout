@@ -23,8 +23,8 @@ export interface RenderOptions {
     css?: string;
 }
 
-export const MO_CONTENT_PREFIX = `<div class="mo">`
-export const MO_CONTENT_SUFFIX = `<span class="mo-end"></span></div>`
+export const MO_CONTENT_PREFIX = `<div class="mo" data-mo="start">`
+export const MO_CONTENT_SUFFIX = `<span data-mo="end"></span></div>`
 
 export function renderMarkdown({ markdown, css }: RenderOptions): string {
     css = css || getStylesheet();
@@ -35,3 +35,9 @@ export function renderMarkdown({ markdown, css }: RenderOptions): string {
         extraCss: css,
     });
 }
+
+// export function renderEmail({ markdown, css }: RenderOptions): string {
+//     css = css || getStylesheet();
+
+//     const markdownText = markdown.split
+// }

@@ -87,6 +87,21 @@
                     <Action xsi:type="ExecuteFunction">
                       <FunctionName>renderToggle</FunctionName>
                     </Action>
+                  </Control>    
+                  <Control xsi:type="Button" id="TestButton">
+                    <Label resid="TestButton.Label"/>
+                    <Supertip>
+                      <Title resid="TestButton.Label"/>
+                      <Description resid="TestButton.Tooltip"/>
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="Icon.16x16"/>
+                      <bt:Image size="32" resid="Icon.32x32"/>
+                      <bt:Image size="80" resid="Icon.80x80"/>
+                    </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                      <FunctionName>testRenderer</FunctionName>
+                    </Action>
                   </Control>                
                 </Group>
               </OfficeTab>
@@ -108,10 +123,12 @@
           <bt:String id="GroupLabel" DefaultValue="MarkOut"/>
           <bt:String id="OptionsButton.Label" DefaultValue="Change Style"/>
           <bt:String id="RenderButton.Label" DefaultValue="Preview Markdown"/>
+          <bt:String id="TestButton.Label" DefaultValue="Test"/>
         </bt:ShortStrings>
         <bt:LongStrings>
           <bt:String id="OptionsButton.Tooltip" DefaultValue="Modify the stylesheets you use to render Markdown."/>
           <bt:String id="RenderButton.Tooltip" DefaultValue="Switch between a preview of your raw and rendered Markdown."/>
+          <bt:String id="TestButton.Tooltip" DefaultValue="Test"/>
         </bt:LongStrings>
       </Resources>
     </VersionOverrides>
