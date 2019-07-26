@@ -14,7 +14,8 @@
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-80.png"/>
   <SupportUrl DefaultValue="https://sierrasoftworks.com/"/>
   <AppDomains>
-    <AppDomain>sierrasoftworks.com</AppDomain>
+    <AppDomain>https://sierrasoftworks.com</AppDomain>
+    <AppDomain>https://localhost:3000</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Mailbox" />
@@ -25,10 +26,9 @@
     </Sets>
   </Requirements>
   <FormSettings>
-    <Form xsi:type="ItemRead">
+    <Form xsi:type="ItemEdit">
       <DesktopSettings>
         <SourceLocation DefaultValue="https://localhost:3000/taskpane.html"/>
-        <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
   </FormSettings>
@@ -54,7 +54,7 @@
               <Event Type="ItemSend" FunctionExecution="synchronous" FunctionName="render"/>
             </ExtensionPoint>
 
-            <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <ExtensionPoint xsi:type="MessageComposeCommandSurface">
               <OfficeTab id="TabDefault">
                 <Group id="msgReadGroup">
                   <Label resid="GroupLabel" />
@@ -85,7 +85,7 @@
                       <bt:Image size="80" resid="Icon.80x80"/>
                     </Icon>
                     <Action xsi:type="ExecuteFunction">
-                      <FunctionName>render</FunctionName>
+                      <FunctionName>renderToggle</FunctionName>
                     </Action>
                   </Control>                
                 </Group>
@@ -106,12 +106,12 @@
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="GroupLabel" DefaultValue="MarkOut"/>
-          <bt:String id="OptionsButton.Label" DefaultValue="Show Options"/>
-          <bt:String id="RenderButton.Label" DefaultValue="Toggle Markdown Rendering"/>
+          <bt:String id="OptionsButton.Label" DefaultValue="Change Style"/>
+          <bt:String id="RenderButton.Label" DefaultValue="Preview Markdown"/>
         </bt:ShortStrings>
         <bt:LongStrings>
-          <bt:String id="OptionsButton.Tooltip" DefaultValue="View the options controlling how Markdown is rendered."/>
-          <bt:String id="RenderButton.Tooltip" DefaultValue="Toggle between a rendered and unrendered Markdown view."/>
+          <bt:String id="OptionsButton.Tooltip" DefaultValue="Modify the stylesheets you use to render Markdown."/>
+          <bt:String id="RenderButton.Tooltip" DefaultValue="Switch between a preview of your raw and rendered Markdown."/>
         </bt:LongStrings>
       </Resources>
     </VersionOverrides>

@@ -1,16 +1,17 @@
-import * as inlineCss from "inline-css";
+import * as juice from "juice";
 import * as hljs from "highlight.js";
 import * as mdit from "markdown-it";
+import { getStylesheet } from "./style";
 
 const md: markdownit = mdit({
     highlight: function (str, lang) {
         if (lang && hljs.getLanguage(lang)) {
             try {
-                hljs.highlight(lang, str).value
+                return `<pre class="hljs"><code>${hljs.highlight(lang, str).value}</code></pre>`;
             } catch (__) { }
         }
 
-        return '';
+        return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`;
     }
 })
     .use(require('markdown-it-footnote'))
@@ -19,23 +20,18 @@ const md: markdownit = mdit({
 
 export interface RenderOptions {
     markdown: string;
-    css: string;
+    css?: string;
 }
 
-export function render({ markdown, css }: RenderOptions): Promise<string> {
-    const raw = md.render(markdown);
+export const MO_CONTENT_PREFIX = `<div class="mo">`
+export const MO_CONTENT_SUFFIX = `<span class="mo-end"></span></div>`
 
-    return inlineCss(raw, {
-        url: ' ',
-        extraCss: css,
-    });
-}
+export function renderMarkdown({ markdown, css }: RenderOptions): string {
+    css = css || getStylesheet();
 
-export function renderInline({ markdown, css }: RenderOptions): Promise<string> {
-    const raw = md.renderInline(markdown);
+    const raw = `${MO_CONTENT_PREFIX}${md.render(markdown)}${MO_CONTENT_SUFFIX}`;
 
-    return inlineCss(raw, {
-        url: ' ',
+    return juice(raw, {
         extraCss: css,
     });
 }
