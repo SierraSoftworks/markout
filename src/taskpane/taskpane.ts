@@ -1,6 +1,7 @@
 import { renderMarkdown } from "../lib/renderer";
 import { getStylesheet, saveStylesheet, setStylesheet } from "../lib/style";
 import { Debounce } from "../lib/debounce";
+import { toggleRendered, getState } from "../lib/item";
 
 /*
  * Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
@@ -17,6 +18,29 @@ Office.onReady(info => {
     document.getElementById("mo-theme").onchange = updateStylesheet;
     document.getElementById("mo-theme").onkeyup = updateStylesheet;
     updateRender()
+
+    document.getElementById("mo-preview-toggle").onclick = () => {
+      document.getElementById("mo-preview-toggle").setAttribute("disabled", "disabled");
+      toggleRendered().then(() => getState()).then(state => {
+        if (state.isRendered)
+          document.getElementById("mo-preview-toggle__text").innerText = "Edit Markdown"
+        else
+          document.getElementById("mo-preview-toggle__text").innerText = "Render Markdown"
+
+        document.getElementById("mo-preview-toggle").removeAttribute("disabled");
+      });
+
+      return false;
+    };
+
+    getState().then(state => {
+      if (state.isRendered)
+        document.getElementById("mo-preview-toggle__text").innerText = "Edit Markdown"
+      else
+        document.getElementById("mo-preview-toggle__text").innerText = "Render Markdown"
+
+      document.getElementById("mo-preview-toggle").removeAttribute("disabled");
+    });
   }
 });
 

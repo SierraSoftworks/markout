@@ -67,3 +67,11 @@ b {
     opacity: 0;
     transition: 0.2s opacity ease-in-out;
 }
+
+.mo-button {
+    text-decoration: none;
+    color: #0366d6;
+    font-weight: 100;
+    font-size: 18px;
+    padding: 10px;
+}

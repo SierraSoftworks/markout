@@ -1,5 +1,6 @@
 import { renderMarkdown } from "./renderer";
 import { cleanse } from "./cleanser";
+import { PromiseSequencer } from "./mutex";
 
 const SETTING_STATE = "markout.state"
 
@@ -8,31 +9,37 @@ export interface State {
   isRendered: boolean;
 }
 
+const sequencer = new PromiseSequencer();
+
 export async function toggleRendered() {
-  const state = await getState();
+  return sequencer.do(async () => {
+    const state = await getState();
 
-  if (state.isRendered) {
-    await setContent(state.preRenderedContent)
-    state.preRenderedContent = null;
-    state.isRendered = false;
-  } else {
-    const current = await getContent();
+    if (state.isRendered) {
+      await setContent(state.preRenderedContent)
+      state.preRenderedContent = null;
+      state.isRendered = false;
+    } else {
+      const current = await getContent();
 
-    await setContent(renderMarkdown({
-      markdown: cleanse(current)
-    }));
+      await setContent(renderMarkdown({
+        markdown: cleanse(current)
+      }));
 
-    state.preRenderedContent = current;
-    state.isRendered = true;
-  }
+      state.preRenderedContent = current;
+      state.isRendered = true;
+    }
 
-  await setState(state);
+    await setState(state);
+  });
 }
 
 export async function ensureRendered() {
-  const state = await getState()
-  if (!state.isRendered)
-    await toggleRendered();
+  return sequencer.do(async () => {
+    const state = await getState()
+    if (!state.isRendered)
+      await toggleRendered();
+  });
 }
 
 export async function getState(): Promise<State> {
