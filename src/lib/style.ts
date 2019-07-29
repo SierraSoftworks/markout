@@ -12,7 +12,7 @@ export const defaultStylesheet = `
 }
 
 .mo code {
-  white-space: pre-wrap;
+  white-space: normal;
   display: inline;
   color: #B21D12;
 }
@@ -205,24 +205,24 @@ export const defaultStylesheet = `
 const SETTING_STYLESHEET = "markout.stylesheet";
 
 export function getStylesheet(): string {
-    return Office.context.roamingSettings.get(SETTING_STYLESHEET) || defaultStylesheet;
+  return Office.context.roamingSettings.get(SETTING_STYLESHEET) || defaultStylesheet;
 }
 
 export function setStylesheet(style: string) {
-    Office.context.roamingSettings.set(SETTING_STYLESHEET, style);
+  Office.context.roamingSettings.set(SETTING_STYLESHEET, style);
 }
 
 export function saveStylesheet(style?: string): Promise<string> {
-    style && setStylesheet(style);
-    return new Promise((resolve, reject) => {
-        Office.context.roamingSettings.saveAsync(state => {
-            if (state.status === Office.AsyncResultStatus.Failed) {
-                const err = new Error(state.error.message);
-                err.name = state.error.name;
-                return reject(err);
-            }
+  style && setStylesheet(style);
+  return new Promise((resolve, reject) => {
+    Office.context.roamingSettings.saveAsync(state => {
+      if (state.status === Office.AsyncResultStatus.Failed) {
+        const err = new Error(state.error.message);
+        err.name = state.error.name;
+        return reject(err);
+      }
 
-            return resolve();
-        });
+      return resolve();
     });
+  });
 }

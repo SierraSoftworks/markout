@@ -1,4 +1,5 @@
 import { renderMarkdown } from "./renderer";
+import { cleanse } from "./cleanser";
 
 const SETTING_STATE = "markout.state"
 
@@ -18,7 +19,7 @@ export async function toggleRendered() {
     const current = await getContent();
 
     await setContent(renderMarkdown({
-      markdown: current
+      markdown: cleanse(current)
     }));
 
     state.preRenderedContent = current;
@@ -47,6 +48,14 @@ export async function setState(state: State) {
   const props = await getCustomProperties();
 
   props.set(SETTING_STATE, JSON.stringify(state));
+
+  return new Promise((resolve, reject) => {
+    props.saveAsync(result => {
+      if (result.status === Office.AsyncResultStatus.Failed)
+        return reject(result.error);
+      return resolve();
+    });
+  });
 }
 
 export function getCustomProperties(): Promise<Office.CustomProperties> {

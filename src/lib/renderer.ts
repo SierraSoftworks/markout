@@ -4,6 +4,8 @@ import * as mdit from "markdown-it";
 import { getStylesheet } from "./style";
 
 const md: markdownit = mdit({
+    html: true,
+    breaks: false,
     highlight: function (str, lang) {
         if (lang && hljs.getLanguage(lang)) {
             try {
