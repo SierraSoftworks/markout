@@ -11,7 +11,7 @@
   <DisplayName DefaultValue="MarkOut"/>
   <Description DefaultValue="Write your emails in Markdown, natively within Outlook."/>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
-  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-80.png"/>
+  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-128.png"/>
   <SupportUrl DefaultValue="https://sierrasoftworks.com/"/>
   <AppDomains>
     <AppDomain>https://sierrasoftworks.com</AppDomain>
@@ -58,21 +58,6 @@
               <OfficeTab id="TabDefault">
                 <Group id="msgReadGroup">
                   <Label resid="GroupLabel" />
-                  <Control xsi:type="Button" id="msgReadOpenPaneButton">
-                    <Label resid="OptionsButton.Label" />
-                    <Supertip>
-                      <Title resid="OptionsButton.Label" />
-                      <Description resid="OptionsButton.Tooltip" />
-                    </Supertip>
-                    <Icon>
-                      <bt:Image size="16" resid="Icon.16x16" />
-                      <bt:Image size="32" resid="Icon.32x32" />
-                      <bt:Image size="80" resid="Icon.80x80" />
-                    </Icon>
-                    <Action xsi:type="ShowTaskpane">
-                      <SourceLocation resid="Taskpane.Url" />
-                    </Action>
-                  </Control>
                   <Control xsi:type="Button" id="RenderButton">
                     <Label resid="RenderButton.Label"/>
                     <Supertip>
@@ -82,27 +67,27 @@
                     <Icon>
                       <bt:Image size="16" resid="Icon.16x16"/>
                       <bt:Image size="32" resid="Icon.32x32"/>
-                      <bt:Image size="80" resid="Icon.80x80"/>
+                      <bt:Image size="80" resid="Icon.128x128"/>
                     </Icon>
                     <Action xsi:type="ExecuteFunction">
                       <FunctionName>renderToggle</FunctionName>
                     </Action>
-                  </Control>    
-                  <Control xsi:type="Button" id="TestButton">
-                    <Label resid="TestButton.Label"/>
+                  </Control>
+                  <Control xsi:type="Button" id="msgReadOpenPaneButton">
+                    <Label resid="OptionsButton.Label" />
                     <Supertip>
-                      <Title resid="TestButton.Label"/>
-                      <Description resid="TestButton.Tooltip"/>
+                      <Title resid="OptionsButton.Label" />
+                      <Description resid="OptionsButton.Tooltip" />
                     </Supertip>
                     <Icon>
-                      <bt:Image size="16" resid="Icon.16x16"/>
-                      <bt:Image size="32" resid="Icon.32x32"/>
-                      <bt:Image size="80" resid="Icon.80x80"/>
+                      <bt:Image size="16" resid="Icon.16x16" />
+                      <bt:Image size="32" resid="Icon.32x32" />
+                      <bt:Image size="80" resid="Icon.128x128"/>
                     </Icon>
-                    <Action xsi:type="ExecuteFunction">
-                      <FunctionName>testRenderer</FunctionName>
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="Taskpane.Url" />
                     </Action>
-                  </Control>                
+                  </Control>
                 </Group>
               </OfficeTab>
             </ExtensionPoint>
@@ -113,7 +98,7 @@
         <bt:Images>
           <bt:Image id="Icon.16x16" DefaultValue="https://localhost:3000/assets/icon-16.png"/>
           <bt:Image id="Icon.32x32" DefaultValue="https://localhost:3000/assets/icon-32.png"/>
-          <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/icon-80.png"/>
+          <bt:Image id="Icon.128x128" DefaultValue="https://localhost:3000/assets/icon-128.png"/>
         </bt:Images>
         <bt:Urls>
           <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html" />
@@ -123,12 +108,10 @@
           <bt:String id="GroupLabel" DefaultValue="MarkOut"/>
           <bt:String id="OptionsButton.Label" DefaultValue="Change Style"/>
           <bt:String id="RenderButton.Label" DefaultValue="Preview Markdown"/>
-          <bt:String id="TestButton.Label" DefaultValue="Test"/>
         </bt:ShortStrings>
         <bt:LongStrings>
           <bt:String id="OptionsButton.Tooltip" DefaultValue="Modify the stylesheets you use to render Markdown."/>
           <bt:String id="RenderButton.Tooltip" DefaultValue="Switch between a preview of your raw and rendered Markdown."/>
-          <bt:String id="TestButton.Tooltip" DefaultValue="Test"/>
         </bt:LongStrings>
       </Resources>
     </VersionOverrides>

@@ -1,6 +1,4 @@
-import { toggleRendered, ensureRendered, getContent } from "../lib/item";
-import { renderMarkdown } from "../lib/renderer";
-import { cleanse } from "../lib/cleanser";
+import { toggleRendered, ensureRendered } from "../lib/item";
 
 /*
  * Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
@@ -11,31 +9,6 @@ import { cleanse } from "../lib/cleanser";
 Office.onReady(info => {
   // If needed, Office.js is ready to be called
 });
-
-
-
-async function testRenderer(event: Office.AddinCommands.Event) {
-  const html = await getContent(Office.CoercionType.Html);
-  const text = await getContent(Office.CoercionType.Text);
-
-  console.log({
-    before: {
-      html,
-      text,
-    },
-    cleansed: {
-      html: cleanse(html)
-    },
-    after: {
-      html: renderMarkdown({ markdown: html }),
-      text: renderMarkdown({ markdown: text })
-    }
-  });
-
-  console.log(cleanse(html));
-
-  event.completed();
-}
 
 async function renderToggle(event: Office.AddinCommands.Event) {
   try {
@@ -90,4 +63,3 @@ const g = getGlobal() as any;
 // the add-in command functions need to be available in global scope
 g.render = render;
 g.renderToggle = renderToggle
-g.testRenderer = testRenderer
