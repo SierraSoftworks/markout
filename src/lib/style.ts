@@ -13,7 +13,7 @@ export const defaultStylesheet = `
 
 .mo code {
   white-space: normal;
-  display: inline;
+  display: inline-block;
   color: #B21D12;
 }
 
