@@ -1,9 +1,9 @@
 {
-  "name": "office-addin-taskpane",
-  "version": "0.0.1",
+  "name": "office-addin-markout",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OfficeDev/Office-Addin-TaskPane.git"
+    "url": "https://github.com/sierrasoftworks/markout.git"
   },
   "license": "MIT",
   "config": {
