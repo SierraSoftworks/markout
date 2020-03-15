@@ -22,7 +22,7 @@ steps:
 
 - script: |
     cp manifest.xml $(Build.ArtifactStagingDirectory)/manifest.xml
-    cp -R artifacts $(Build.ArtifactStagingDirectory)/
+    cp -R assets $(Build.ArtifactStagingDirectory)/
     cp dist/* $(Build.ArtifactStagingDirectory)/
   displayName: 'prepare artifacts'
 
