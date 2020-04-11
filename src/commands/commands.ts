@@ -1,4 +1,4 @@
-import { toggleRendered, ensureRendered } from "../lib/item";
+import { toggleRendered, renderItem } from "../lib/item";
 
 /*
  * Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
@@ -26,7 +26,6 @@ async function renderToggle(event: Office.AddinCommands.Event) {
     Office.context.mailbox.item.notificationMessages.replaceAsync("markout.render", message);
     event.completed({ allowEvent: false });
   }
-
 }
 
 /**
@@ -35,7 +34,7 @@ async function renderToggle(event: Office.AddinCommands.Event) {
  */
 async function render(event: Office.AddinCommands.Event) {
   try {
-    await ensureRendered();
+    await renderItem();
     event.completed();
   } catch (err) {
     const message: Office.NotificationMessageDetails = {

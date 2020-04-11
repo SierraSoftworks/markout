@@ -54,9 +54,9 @@
 
             <ExtensionPoint xsi:type="MessageComposeCommandSurface">
               <OfficeTab id="TabDefault">
-                <Group id="msgReadGroup">
+                <Group id="msgMarkoutGroup">
                   <Label resid="GroupLabel" />
-                  <Control xsi:type="Button" id="msgReadToggleMarkdownButton">
+                  <Control xsi:type="Button" id="msgMarkoutToggleMarkdownButton">
                     <Label resid="RenderButton.Label" />
                     <Supertip>
                       <Title resid="RenderButton.Label" />
@@ -71,7 +71,45 @@
                       <FunctionName>renderToggle</FunctionName>
                     </Action>
                   </Control>
-                  <Control xsi:type="Button" id="msgReadOpenPaneButton">
+                  <Control xsi:type="Button" id="msgMarkoutOpenPaneButton">
+                    <Label resid="OptionsButton.Label" />
+                    <Supertip>
+                      <Title resid="OptionsButton.Label" />
+                      <Description resid="OptionsButton.Tooltip" />
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="Icon.16x16" />
+                      <bt:Image size="32" resid="Icon.32x32" />
+                      <bt:Image size="80" resid="Icon.128x128"/>
+                    </Icon>
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="Taskpane.Url" />
+                    </Action>
+                  </Control>
+                </Group>
+              </OfficeTab>
+            </ExtensionPoint>
+
+            <ExtensionPoint xsi:type="AppointmentOrganizerCommandSurface">
+              <OfficeTab id="TabDefault">
+                <Group id="mtngMarkoutGroup">
+                  <Label resid="GroupLabel" />
+                  <Control xsi:type="Button" id="mtngMarkoutToggleMarkdownButton">
+                    <Label resid="RenderButton.Label" />
+                    <Supertip>
+                      <Title resid="RenderButton.Label" />
+                      <Description resid="RenderButton.Tooltip" />
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="Icon.16x16" />
+                      <bt:Image size="32" resid="Icon.32x32" />
+                      <bt:Image size="80" resid="Icon.128x128" />
+                    </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                      <FunctionName>renderToggle</FunctionName>
+                    </Action>
+                  </Control>
+                  <Control xsi:type="Button" id="mtngMarkoutOpenPaneButton">
                     <Label resid="OptionsButton.Label" />
                     <Supertip>
                       <Title resid="OptionsButton.Label" />

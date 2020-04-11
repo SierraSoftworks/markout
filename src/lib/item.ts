@@ -16,30 +16,38 @@ export async function toggleRendered() {
     const state = await getState();
 
     if (state.isRendered) {
-      await setContent(state.preRenderedContent)
-      state.preRenderedContent = null;
-      state.isRendered = false;
+      await unRenderItem(state)
     } else {
-      const current = await getContent();
-
-      await setContent(renderMarkdown({
-        markdown: cleanse(current)
-      }));
-
-      state.preRenderedContent = current;
-      state.isRendered = true;
+      await renderItem(state)
     }
-
-    await setState(state);
   });
 }
 
-export async function ensureRendered() {
-  return sequencer.do(async () => {
-    const state = await getState()
-    if (!state.isRendered)
-      await toggleRendered();
-  });
+export async function renderItem(state?: State) {
+  state = state || await getState();
+
+  if (!state.isRendered) {
+    const current = await getContent();
+
+    await setContent(renderMarkdown({
+      markdown: cleanse(current)
+    }));
+
+    state.preRenderedContent = current;
+    state.isRendered = true;
+    await setState(state);
+  }
+}
+
+export async function unRenderItem(state?: State) {
+  state = state || await getState();
+
+  if (state.isRendered) {
+    await setContent(state.preRenderedContent)
+    state.preRenderedContent = null;
+    state.isRendered = false;
+    await setState(state);
+  }
 }
 
 export async function getState(): Promise<State> {

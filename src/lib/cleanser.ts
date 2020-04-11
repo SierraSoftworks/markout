@@ -1,14 +1,9 @@
 export function cleanse(text: string): string {
-    console.log("cleansing", text)
     const container = document.createElement("div");
     container.innerHTML = text;
 
     const newContainer = cleanseElement(container);
-
-    console.log("cleansed", newContainer)
-    if (newContainer.nodeType === document.TEXT_NODE)
-        return cleanseText(newContainer.textContent);
-    return (<HTMLElement>newContainer).innerHTML
+    return cleanseText(newContainer.nodeValue)
 }
 
 function cleanseElementTree(container: Element): Node {
@@ -47,5 +42,5 @@ function cleanseElement(el: Element): Node {
 }
 
 function cleanseText(text: string): string {
-    return (text || "").replace(/^\n*(.*?)\n*$/, "$1")
+    return (text || "").replace(/^\n*(.+?)\n*$/, "$1")
 }
