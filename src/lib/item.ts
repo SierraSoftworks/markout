@@ -12,9 +12,6 @@ export async function renderItem() {
       markdown: cleanse(current)
     });
 
-    console.log(`Got: ${current}`)
-    console.log(`Rendered: ${rendered}`)
-
     await setContent(rendered);
   })
 }
