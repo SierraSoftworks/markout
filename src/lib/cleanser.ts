@@ -4,7 +4,7 @@ export function cleanse(text: string): string {
 
     const newContainer = cleanseElementContainer(container, false)[0];
     if (newContainer.nodeType === document.TEXT_NODE)
-        return newContainer.textContent
+        return cleanseText(newContainer.textContent)
 
     return (<HTMLElement>newContainer).innerHTML
 }
@@ -29,6 +29,8 @@ function cleanseElement(el: Element): Node[] {
             if (el.innerHTML === el.getAttribute("href"))
                 return [document.createTextNode(el.getAttribute("href"))]
             return [el]
+        case "img":
+            return [el, document.createTextNode("\n")]
         case "div":
         case "span":
             return cleanseElementContainer(el);
@@ -38,8 +40,8 @@ function cleanseElement(el: Element): Node[] {
 }
 
 function cleanseElementContainer(container: Element, simplifyNode: boolean = true): Node[] {
-    // Ignore containers with IDs
-    if (container.id)
+    // Ignore containers with IDs (except if that ID is an emoji)
+    if (container.id && container.id.split("").every(c => c.charCodeAt(0) < 128))
         return [container];
 
     const newContainer = document.createElement(container.tagName)
@@ -77,7 +79,9 @@ function isEmpty(node: Node) {
 }
 
 function cleanseText(text: string): string {
-    return (text || "").replace(/^\n*(.+?)\n*$/, "$1")
+    const container = document.createElement("span")
+    container.innerHTML = text;
+    return container.textContent.replace(/^\n*(.+?)\n*$/, "$1")
 }
 
 function toArray<T extends Node>(nodes: NodeListOf<T>): T[] {
