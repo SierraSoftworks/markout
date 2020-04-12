@@ -13,9 +13,9 @@
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
 
-    <!-- For more information on Office UI Fabric, visit https://developer.microsoft.com/fabric. -->
+    <!-- For more information on Office UI Fabric, visit https://developer.microsoft.com/en-us/fluentui. -->
     <link rel="stylesheet"
-        href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.1/css/fabric.min.css" />
+        href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css" />
 
     <!-- Template styles -->
     <link href="taskpane.css" rel="stylesheet" type="text/css" />
@@ -46,9 +46,14 @@
             <span class="ms-font-m">Changes not saved</span>
         </p>
 
-        <a id="mo-preview-toggle" class="mo-button" href="">
-            <i class="ms-Icon ms-Icon--PreviewLink"></i>
-            <span id="mo-preview-toggle__text">Render Markdown</span>
+        <a id="mo-render" class="mo-button" href="">
+            <i class="ms-Icon ms-Icon--FabricTextHighlight"></i>
+            <span id="mo-render__text">Render Markdown</span>
+        </a>
+
+        <a id="mo-autorender" class="mo-button" href="">
+            <i id="mo-autorender__icon" class="ms-Icon ms-Icon--Inbox"></i>
+            <span id="mo-autorender__text">Render on Save</span>
         </a>
     </main>
 </body>

@@ -50,7 +50,7 @@
             <FunctionFile resid="Commands.Url" />
 
             <ExtensionPoint xsi:type="Events">
-              <Event Type="ItemSend" FunctionExecution="synchronous" FunctionName="render"/>
+              <Event Type="ItemSend" FunctionExecution="synchronous" FunctionName="onSend"/>
             </ExtensionPoint>
 
             <ExtensionPoint xsi:type="MessageComposeCommandSurface">
@@ -69,7 +69,7 @@
                       <bt:Image size="80" resid="Icon.128x128" />
                     </Icon>
                     <Action xsi:type="ExecuteFunction">
-                      <FunctionName>renderToggle</FunctionName>
+                      <FunctionName>render</FunctionName>
                     </Action>
                   </Control>
                   <Control xsi:type="Button" id="msgMarkoutOpenPaneButton">
@@ -107,7 +107,7 @@
                       <bt:Image size="80" resid="Icon.128x128" />
                     </Icon>
                     <Action xsi:type="ExecuteFunction">
-                      <FunctionName>renderToggle</FunctionName>
+                      <FunctionName>render</FunctionName>
                     </Action>
                   </Control>
                   <Control xsi:type="Button" id="mtngMarkoutOpenPaneButton">
@@ -143,11 +143,11 @@
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="GroupLabel" DefaultValue="MarkOut"/>
-          <bt:String id="OptionsButton.Label" DefaultValue="Change Style"/>
+          <bt:String id="OptionsButton.Label" DefaultValue="Change Settings"/>
           <bt:String id="RenderButton.Label" DefaultValue="Toggle Markdown"/>
         </bt:ShortStrings>
         <bt:LongStrings>
-          <bt:String id="OptionsButton.Tooltip" DefaultValue="Modify the stylesheets you use to render Markdown."/>
+          <bt:String id="OptionsButton.Tooltip" DefaultValue="Modify options like your stylesheet and whether messages are automatically rendered."/>
           <bt:String id="RenderButton.Tooltip" DefaultValue="Switch between a preview of your raw and rendered Markdown."/>
         </bt:LongStrings>
       </Resources>

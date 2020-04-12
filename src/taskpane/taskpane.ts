@@ -1,7 +1,7 @@
 import { renderMarkdown } from "../lib/renderer";
-import { getStylesheet, saveStylesheet, setStylesheet } from "../lib/style";
+import { getStylesheet, saveStylesheet, setStylesheet, getAutoRender, setAutoRender } from "../lib/config";
 import { Debounce } from "../lib/debounce";
-import { toggleRendered, getState } from "../lib/item";
+import { renderItem } from "../lib/item";
 
 /*
  * Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
@@ -19,39 +19,54 @@ Office.onReady(info => {
     document.getElementById("mo-theme").onkeyup = updateStylesheet;
     updateRender()
 
-    document.getElementById("mo-preview-toggle").onclick = () => {
-      document.getElementById("mo-preview-toggle").setAttribute("disabled", "disabled");
-      toggleRendered().then(() => getState()).then(state => {
-        if (state.isRendered)
-          document.getElementById("mo-preview-toggle__text").innerText = "Edit Markdown"
-        else
-          document.getElementById("mo-preview-toggle__text").innerText = "Render Markdown"
+    const renderButton = document.getElementById("mo-render");
+    const renderButtonText = document.getElementById("mo-render__text");
+    const updateRenderButton = () => {
+      renderButtonText.removeAttribute("disabled")
+    }
 
-        document.getElementById("mo-preview-toggle").removeAttribute("disabled");
-      });
+    const autoRenderButton = document.getElementById("mo-autorender");
+    const autoRenderButtonText = document.getElementById("mo-autorender__text");
+    const autoRenderButtonIcon = document.getElementById("mo-autorender__icon");
+    const updateAutoRenderButton = (enabled: boolean) => {
+      if (enabled) {
+        autoRenderButtonText.innerText = "Auto Render On"
+        autoRenderButtonIcon.setAttribute("class", "ms-Icon ms-Icon--InboxCheck")
+      } else {
+        autoRenderButtonText.innerText = "Auto Render Off"
+        autoRenderButtonIcon.setAttribute("class", "ms-Icon ms-Icon--Inbox")
+      }
+    }
+
+
+    renderButton.onclick = () => {
+      renderButton.setAttribute("disabled", "disabled");
+      renderItem().then(updateRenderButton);
 
       return false;
     };
 
-    getState().then(state => {
-      if (state.isRendered)
-        document.getElementById("mo-preview-toggle__text").innerText = "Edit Markdown"
-      else
-        document.getElementById("mo-preview-toggle__text").innerText = "Render Markdown"
+    autoRenderButton.onclick = () => {
+      setAutoRender(!getAutoRender()).then(updateAutoRenderButton)
 
-      document.getElementById("mo-preview-toggle").removeAttribute("disabled");
-    });
+      return false;
+    };
+
+    updateRenderButton();
+    updateAutoRenderButton(getAutoRender());
   }
 });
 
 const example = `
-## MarkOut
+## Example
 Write your emails in *Markdown* with no fuss. Make your
 content **pop** or show some \`code\`.
 
 \`\`\`js
 console.log("Hello world!");
 \`\`\`
+
+:warning: You can use \`Ctrl+Z\` to undo rendering.
 
 `.trim();
 

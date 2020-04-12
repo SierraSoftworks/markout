@@ -1,7 +1,7 @@
 import * as juice from "juice";
 import * as hljs from "highlight.js";
 import * as mdit from "markdown-it";
-import { getStylesheet } from "./style";
+import { getStylesheet } from "./config";
 
 const md: markdownit = mdit({
     html: true,
@@ -25,13 +25,13 @@ export interface RenderOptions {
     css?: string;
 }
 
-export const MO_CONTENT_PREFIX = `<div class="mo" data-mo="start">`
-export const MO_CONTENT_SUFFIX = `<span data-mo="end"></span></div>`
+export const MO_CONTENT_PREFIX = () => `<div class="mo" id="mo-content-${(Math.random() * 100000).toFixed(0)}">\n`
+export const MO_CONTENT_SUFFIX = () => `</div>\n`
 
 export function renderMarkdown({ markdown, css }: RenderOptions): string {
     css = css || getStylesheet();
 
-    const raw = `${MO_CONTENT_PREFIX}${md.render(markdown)}${MO_CONTENT_SUFFIX}`;
+    const raw = `${MO_CONTENT_PREFIX()}${md.render(markdown)}${MO_CONTENT_SUFFIX()}`;
 
     return juice(raw, {
         extraCss: css,

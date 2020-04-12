@@ -203,6 +203,7 @@ export const defaultStylesheet = `
 `;
 
 const SETTING_STYLESHEET = "markout.stylesheet";
+const SETTING_AUTORENDER = "markout.autorender"
 
 export function getStylesheet(): string {
   return Office.context.roamingSettings.get(SETTING_STYLESHEET) || defaultStylesheet;
@@ -222,7 +223,27 @@ export function saveStylesheet(style?: string): Promise<string> {
         return reject(err);
       }
 
-      return resolve();
+      return resolve(getStylesheet());
+    });
+  });
+}
+
+export function getAutoRender(): boolean {
+  return Office.context.roamingSettings.get(SETTING_AUTORENDER) || false
+}
+
+export function setAutoRender(enabled: boolean): Promise<boolean> {
+  Office.context.roamingSettings.set(SETTING_AUTORENDER, enabled)
+
+  return new Promise((resolve, reject) => {
+    Office.context.roamingSettings.saveAsync(state => {
+      if (state.status === Office.AsyncResultStatus.Failed) {
+        const err = new Error(state.error.message);
+        err.name = state.error.name;
+        return reject(err);
+      }
+
+      return resolve(enabled);
     });
   });
 }
