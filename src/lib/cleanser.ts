@@ -6,7 +6,7 @@ export function cleanse(text: string): string {
     if (newContainer.nodeType === document.TEXT_NODE)
         return cleanseText(newContainer.textContent)
 
-    return (<HTMLElement>newContainer).innerHTML
+    return cleanseHtmlEscapes((<HTMLElement>newContainer).innerHTML)
 }
 
 function cleanseNode(node: Node): Node[] {
@@ -82,6 +82,14 @@ function cleanseText(text: string): string {
     const container = document.createElement("span")
     container.innerHTML = text;
     return container.textContent.replace(/^\n*(.+?)\n*$/, "$1")
+}
+
+function cleanseHtmlEscapes(text: string): string {
+    return text.replace(/&[^\s;]+;/g, sequence => {
+        const el = document.createElement("span")
+        el.innerHTML = sequence
+        return el.textContent
+    })
 }
 
 function toArray<T extends Node>(nodes: NodeListOf<T>): T[] {

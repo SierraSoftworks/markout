@@ -1,4 +1,4 @@
-import { renderMarkdown } from "./renderer"
+import { renderMarkdown } from "../src/lib/renderer"
 import { expect } from "chai";
 
 describe("renderer", () => {
