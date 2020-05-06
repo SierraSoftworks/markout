@@ -1,83 +1,66 @@
 trigger:
-- master
+  - master
 
-pool:
-  vmImage: 'windows-latest'
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: SierraSoftworks/devops-pipelines
+      endpoint: SierraSoftworks
 
-variables:
-  - name: Storage
-    value: markout
-  - name: Container
-    value: outlook
-  - name: ResourceGroup
-    value: app-markout
-  - name: Cdn.Profile
-    value: sierrasoftworks-markout
-  - name: Cdn.Endpoint
-    value: markout
-
-stages:
-  - stage: build
-    displayName: Build Package
-    jobs:
+extends:
+  template: azurecdn/website.yml@templates
+  parameters:
+    build:
       - job: build
-        displayName: Build Package
+        displayName: Build Add-in
         steps:
           - task: NodeTool@0
             inputs:
               versionSpec: '12.x'
             displayName: 'Install Node.js'
 
-          - script: npm install
-            displayName: Install NPM Modules
+          - script: |
+              npm install
+            displayName: 'npm install'
             
-          - script: npm test
-            displayName: Run NPM Tests
+          - script: |
+              npm test
+            displayName: 'npm test'
 
-          - script: npm run build
-            displayName: Build NPM Package
+          - script: |
+              npm run build
+            displayName: 'npm build'
 
           - script: |
               cp manifest.xml $(Build.ArtifactStagingDirectory)/manifest.xml
               cp -R assets $(Build.ArtifactStagingDirectory)/
               cp dist/* $(Build.ArtifactStagingDirectory)/
-            displayName: 'Prepare Final Package'
+            displayName: 'prepare artifacts'
 
-          - publish: $(Build.ArtifactStagingDirectory)
-            artifact: package
-  - stage: release
-    displayName: Live
-    dependsOn:
-      - build
-    jobs:
-      - deployment: release
-        displayName: Release Package
-        environment: markout-sierrasoftworks-com
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - task: AzureFileCopy@4
-                  displayName: Copy Artifacts to Azure
-                  inputs:
-                    SourcePath: '$(Pipeline.Workspace)/package'
-                    Destination: AzureBlob
-                    ContainerName: '$(Container)'
-                    azureSubscription: 'MSFT Benefit'
-                    storage: $(Storage)
-                    sasTokenTimeOutInMinutes: 15
-            routeTraffic:
-              steps:
-                - task: PurgeAzureCDNEndpoint@2
-                  displayName: Purge Azure CDN
-                  inputs:
-                    ConnectedServiceNameSelector: ConnectedServiceNameARM
-                    ConnectedServiceNameARM: 'MSFT Benefit'
-                    ResourceGroupName: $(ResourceGroup)
-                    EndpointName: $(Cdn.Endpoint)
-                    ProfileName: $(Cdn.Profile)
-                    PurgeContent: '/*'
-            postRouteTraffic:
-              steps:
-                - pwsh: Invoke-WebRequest -UseBasicParsing https://markout.sierrasoftworks.com/outlook/manifest.xml
-                  displayName: Confirm Package is Available
+          - publish: $(Build.ArtifactStagingDirectory)/
+            artifact: markout
+    pool:
+      vmImage: windows-latest
+    
+    subscription: MSFT Benefit
+
+    # If you've got multiple resource groups, this should match the one used by your CDN profile.
+    resourcegroup: app-markout
+    cdn_profile: sierrasoftworks-markout
+
+    staging:
+      environment: staging-markout-sierrasoftworks-com
+      cdn_endpoint: markout
+      artifact: markout
+      container: outlook-beta
+      storage: markout
+      healthcheck: https://markout.sierrasoftworks.com/outlook-beta/manifest.xml
+
+    production:
+      environment: markout-sierrasoftworks-com
+      cdn_endpoint: markout
+      artifact: markout
+      container: outlook
+      storage: markout
+      healthcheck: https://markout.sierrasoftworks.com/outlook/manifest.xml
