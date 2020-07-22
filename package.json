@@ -58,7 +58,7 @@
     "jsdom": "^16.2.2",
     "mocha": "^7.1.1",
     "office-addin-debugging": "^3.0.23",
-    "office-addin-dev-certs": "^1.4.15",
+    "office-addin-dev-certs": "^1.5.3",
     "office-toolbox": "^0.3.0",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^6.2.1",
