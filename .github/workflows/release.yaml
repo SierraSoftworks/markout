@@ -15,7 +15,7 @@ env:
 
   LIVE_STORAGE_CONTAINER: "outlook"
   LIVE_STORAGE_ACCOUNT: "markout"
-  LIVE_CDN_RESOURCEGROUP: markout
+  LIVE_CDN_RESOURCEGROUP: app-markout
   LIVE_CDN_PROFILE: "sierrasoftworks-markout"
   LIVE_CDN_ENDPOINT: "markout"
   
