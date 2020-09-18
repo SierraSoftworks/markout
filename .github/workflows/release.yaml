@@ -42,9 +42,9 @@ jobs:
     
     - name: Build Package (Staging)
       run: |
-        npm build
+        npm run build
         mkdir -p ./out/staging/
-        cp manifest.xml ./out/staging/manifest.xml
+        cp manifest.beta.xml ./out/staging/manifest.xml
         cp -R assets ./out/staging/
         cp -R dist/* ./out/staging/
         
@@ -58,7 +58,7 @@ jobs:
     
     - name: Build Package (Live)
       run: |
-        npm build
+        npm run build
         mkdir -p ./out/live/
         cp manifest.xml ./out/live/manifest.xml
         cp -R assets ./out/live/
