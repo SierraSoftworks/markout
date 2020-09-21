@@ -1,10 +1,39 @@
 export class PromiseSequencer {
-    private lock: Promise<any> = null;
+    private running: boolean = false;
+    private queue: SequencedPromiseHandle[] = [];
 
     public do<T>(fn: () => Promise<T>): Promise<T> {
-        if (!this.lock)
-            return this.lock = fn();
+        return new Promise((resolve, reject) => {
+            this.queue.push({
+                trigger: fn,
+                resolve,
+                reject,
+            });
 
-        return this.lock = this.lock.then(() => fn());
+            if (!this.running)
+            {
+                this.resume();
+            }
+        });
     }
+
+    private resume()
+    {
+        this.running = !!this.queue.length;
+        if (!this.running) return;
+
+        let next = this.queue.shift();
+        next.trigger().then(result => {
+            next.resolve(result)
+        }).catch(err => {
+            next.reject(err);
+        }).finally(() => this.resume());
+    }
+}
+
+interface SequencedPromiseHandle
+{
+    trigger: () => Promise<any>;
+    resolve: (result: any) => void;
+    reject: (err: Error) => void;
 }

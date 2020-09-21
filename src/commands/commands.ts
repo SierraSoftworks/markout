@@ -33,7 +33,10 @@ async function render(event: Office.AddinCommands.Event) {
 }
 
 async function onSend(event: Office.AddinCommands.Event) {
-  if (!getAutoRender()) return;
+  if (!getAutoRender()) {
+    event.completed();
+    return;
+  }
 
   try {
     await renderItem();

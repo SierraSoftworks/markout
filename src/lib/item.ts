@@ -6,10 +6,10 @@ const sequencer = new PromiseSequencer();
 
 export async function renderItem() {
   return sequencer.do(async () => {
-    const current = await getContent(Office.CoercionType.Text);
+    const current = await getContent(Office.CoercionType.Html);
 
     const rendered = renderMarkdown({
-      markdown: current
+      markdown: cleanse(current)
     });
 
     await setContent(rendered, Office.CoercionType.Html);
