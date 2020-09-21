@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@types/highlight.js": "^9.12.4",
-    "@types/inline-css": "0.0.32",
+    "@types/inline-css": "0.0.33",
     "@types/markdown-it": "0.0.9",
     "highlight.js": "^9.18.3",
     "html2plaintext": "^2.1.2",
