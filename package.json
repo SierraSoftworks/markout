@@ -33,7 +33,7 @@
     "highlight.js": "^9.18.3",
     "html2plaintext": "^2.1.2",
     "inline-css": "^2.6.3",
-    "juice": "^6.0.0",
+    "juice": "^7.0.0",
     "markdown-it": "^11.0.1",
     "markdown-it-emoji": "^1.4.0",
     "markdown-it-footnote": "^3.0.2"
