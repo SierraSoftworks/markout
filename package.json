@@ -57,7 +57,7 @@
     "html-webpack-plugin": "^4.5.0",
     "jsdom": "^16.4.0",
     "mocha": "^7.2.0",
-    "office-addin-debugging": "^3.0.34",
+    "office-addin-debugging": "^3.0.37",
     "office-addin-dev-certs": "^1.5.7",
     "office-toolbox": "^0.3.0",
     "source-map-loader": "^1.1.0",
