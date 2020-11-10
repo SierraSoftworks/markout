@@ -29,7 +29,7 @@
   "dependencies": {
     "@types/highlight.js": "^9.12.4",
     "@types/inline-css": "0.0.33",
-    "@types/markdown-it": "0.0.9",
+    "@types/markdown-it": "10.0.3",
     "highlight.js": "^10.3.2",
     "html2plaintext": "^2.1.2",
     "inline-css": "^2.6.3",
