@@ -27,7 +27,7 @@
     "test:watch": "ts-mocha -p  tsconfig.json spec/**/*.spec.ts --watch --watch-files src/**/*.ts --watch-files spec/**/*"
   },
   "dependencies": {
-    "@types/highlight.js": "^9.12.4",
+    "@types/highlight.js": "^10.1.0",
     "@types/inline-css": "0.0.33",
     "@types/markdown-it": "0.0.9",
     "highlight.js": "^10.3.2",
