@@ -61,7 +61,7 @@
     "office-addin-dev-certs": "^1.5.7",
     "office-toolbox": "^0.3.0",
     "source-map-loader": "^1.1.2",
-    "ts-loader": "^8.0.10",
+    "ts-loader": "^8.0.12",
     "ts-mocha": "^8.0.0",
     "typescript": "^4.0.5",
     "webpack": "^4.44.2",
