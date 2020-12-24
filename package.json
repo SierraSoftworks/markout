@@ -39,7 +39,7 @@
     "markdown-it-footnote": "^3.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
+    "@babel/core": "^7.12.10",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
     "@types/chai": "^4.2.14",
