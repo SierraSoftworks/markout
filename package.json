@@ -30,7 +30,7 @@
     "@types/highlight.js": "^10.1.0",
     "@types/inline-css": "0.0.33",
     "@types/markdown-it": "0.0.9",
-    "highlight.js": "^10.4.1",
+    "highlight.js": "^10.5.0",
     "html2plaintext": "^2.1.2",
     "inline-css": "^3.0.0",
     "juice": "^7.0.0",
