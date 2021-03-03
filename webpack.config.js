@@ -1,6 +1,8 @@
 const devCerts = require("office-addin-dev-certs");
+const path = require("path")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = async (env, options) => {
   const config = {
@@ -12,14 +14,14 @@ module.exports = async (env, options) => {
     },
     resolve: {
       extensions: [".ts", ".tsx", ".html", ".js"],
-      alias: { "superagent-proxy": false },
+      alias: { "superagent-proxy": path.resolve(__dirname, "src/shims/superagent-proxy") },
       fallback: {
         "assert": require.resolve("assert/"),
         "buffer": require.resolve("buffer/"),
         "https": require.resolve("https-browserify"),
         "fs": false,
         "os": require.resolve("os-browserify/browser"),
-        "stream": require.resolve("stream-browserify")
+        "stream": require.resolve("stream-browserify"),
       }
     },
     module: {
@@ -41,6 +43,9 @@ module.exports = async (env, options) => {
       ]
     },
     plugins: [
+      new webpack.DefinePlugin({
+        "process.env.NODE_DEBUG": false
+      }),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         filename: "taskpane.html",
