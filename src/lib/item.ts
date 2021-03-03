@@ -8,7 +8,7 @@ export async function renderItem() {
   return sequencer.do(async () => {
     const current = await getContent(Office.CoercionType.Html);
 
-    const rendered = renderMarkdown({
+    const rendered = await renderMarkdown({
       markdown: cleanse(current)
     });
 

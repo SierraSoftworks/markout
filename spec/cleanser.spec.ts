@@ -3,10 +3,8 @@ import { cleanse } from "../src/lib/cleanser";
 import { expect } from "chai";
 import { JSDOM } from "jsdom"
 
-const dom = new JSDOM()
-
-global["window"] = dom.window
-global["document"] = dom.window.document
+const jsdom = new JSDOM()
+global["DOMParser"] = jsdom.window.DOMParser;
 
 function p(input: string): string {
     return `<div style="font-family: Calibri, Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">${input}</div>`
