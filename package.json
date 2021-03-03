@@ -8,7 +8,7 @@
   "license": "MIT",
   "config": {
     "app-to-debug": "outlook",
-    "app-type-to-debug": "desktop",
+    "app-type-to-debug": "web",
     "dev-server-port": 3000
   },
   "babel": {
