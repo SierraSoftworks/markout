@@ -1,9 +1,9 @@
-import * as juice from "juice";
+import * as inlineCss from "inline-css";
 import * as hljs from "highlight.js";
 import * as mdit from "markdown-it";
 import { getStylesheet } from "./config";
 
-const md: markdownit = mdit({
+const md: mdit = mdit({
     html: true,
     breaks: false,
     highlight: function (str, lang) {
@@ -28,13 +28,17 @@ export interface RenderOptions {
 export const MO_CONTENT_PREFIX = () => `<div class="mo" id="mo-content-${(Math.random() * 100000).toFixed(0)}">\n`
 export const MO_CONTENT_SUFFIX = () => `</div>\n`
 
-export function renderMarkdown({ markdown, css }: RenderOptions): string {
+export async function renderMarkdown({ markdown, css }: RenderOptions): Promise<string> {
     css = css || getStylesheet();
 
     const raw = `${MO_CONTENT_PREFIX()}${md.render(markdown)}${MO_CONTENT_SUFFIX()}`;
 
-    return juice(raw, {
+    return await inlineCss(raw, {
         extraCss: css,
+        url: " ",
+        removeStyleTags: true,
+        removeLinkTags: true,
+        removeHtmlSelectors: true,
     });
 }
 

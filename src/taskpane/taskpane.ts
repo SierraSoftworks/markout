@@ -89,7 +89,7 @@ export async function updateStylesheet() {
 }
 
 export async function updateRender() {
-  document.getElementById("mo-preview").innerHTML = renderMarkdown({
+  document.getElementById("mo-preview").innerHTML = await renderMarkdown({
     markdown: example
   });
 }
