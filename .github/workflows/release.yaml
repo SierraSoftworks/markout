@@ -75,6 +75,7 @@ jobs:
   deploy-staging:
     runs-on: ubuntu-latest
     needs: [build]
+    if: github.actor != "dependabot[bot]"
     
     steps:
       - name: Download Artifacts for Website (Staging)
