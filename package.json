@@ -83,7 +83,7 @@
     "jsdom": "^16.5.3",
     "mocha": "^8.3.2",
     "office-addin-debugging": "^4.1.5",
-    "office-addin-dev-certs": "^1.5.17",
+    "office-addin-dev-certs": "^1.5.18",
     "office-toolbox": "^0.3.0",
     "source-map-loader": "^2.0.1",
     "style-loader": "^2.0.0",
