@@ -55,7 +55,7 @@
     "inline-css": "^3.0.0",
     "markdown-it": "^12.1.0",
     "markdown-it-emoji": "^2.0.0",
-    "markdown-it-footnote": "^3.0.2",
+    "markdown-it-footnote": "^3.0.3",
     "os-browserify": "^0.3.0",
     "stream-browserify": "^3.0.0"
   },
@@ -66,7 +66,7 @@
     "@babel/preset-typescript": "^7.14.5",
     "@types/chai": "^4.2.21",
     "@types/expect": "^24.3.0",
-    "@types/jsdom": "^16.2.10",
+    "@types/jsdom": "^16.2.13",
     "@types/mocha": "^8.2.3",
     "@types/office-js": "^1.0.178",
     "@types/office-runtime": "^1.0.20",
