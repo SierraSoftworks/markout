@@ -67,7 +67,7 @@
     "@types/chai": "^4.2.21",
     "@types/expect": "^24.3.0",
     "@types/jsdom": "^16.2.10",
-    "@types/mocha": "^8.2.2",
+    "@types/mocha": "^8.2.3",
     "@types/office-js": "^1.0.178",
     "@types/office-runtime": "^1.0.20",
     "babel-loader": "^8.2.2",
