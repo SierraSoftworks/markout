@@ -66,7 +66,7 @@
     "@babel/preset-typescript": "^7.14.5",
     "@types/chai": "^4.2.21",
     "@types/expect": "^24.3.0",
-    "@types/jsdom": "^16.2.10",
+    "@types/jsdom": "^16.2.13",
     "@types/mocha": "^8.2.3",
     "@types/office-js": "^1.0.178",
     "@types/office-runtime": "^1.0.20",
