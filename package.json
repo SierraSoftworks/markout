@@ -47,7 +47,7 @@
   "dependencies": {
     "@types/highlight.js": "^10.1.0",
     "@types/inline-css": "3.0.1",
-    "@types/markdown-it": "^12.2.0",
+    "@types/markdown-it": "^12.2.1",
     "assert": "^2.0.0",
     "buffer": "^6.0.3",
     "highlight.js": "^11.2.0",
