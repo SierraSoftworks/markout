@@ -75,7 +75,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "chai": "^4.3.4",
     "clean-webpack-plugin": "^4.0.0",
-    "core-js": "^3.17.2",
+    "core-js": "^3.17.3",
     "css-loader": "^6.2.0",
     "file-loader": "^6.2.0",
     "html-loader": "^2.1.2",
@@ -87,11 +87,11 @@
     "office-toolbox": "^0.3.0",
     "source-map-loader": "^3.0.0",
     "style-loader": "^3.2.1",
-    "terser-webpack-plugin": "^5.2.3",
+    "terser-webpack-plugin": "^5.2.4",
     "ts-mocha": "^8.0.0",
     "typescript": "^4.4.2",
     "webpack": "^5.51.2",
     "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.1.1"
+    "webpack-dev-server": "^4.2.0"
   }
 }
