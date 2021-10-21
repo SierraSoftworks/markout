@@ -78,7 +78,7 @@
     "core-js": "^3.18.3",
     "css-loader": "^6.4.0",
     "file-loader": "^6.2.0",
-    "html-loader": "^2.1.2",
+    "html-loader": "^3.0.0",
     "html-webpack-plugin": "^5.4.0",
     "jsdom": "^18.0.0",
     "mocha": "^9.1.3",
