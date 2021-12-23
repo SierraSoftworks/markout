@@ -1,4 +1,4 @@
-import { renderItem } from "../lib/item";
+import { ensureRendered, renderItem } from "../lib/item";
 import { getAutoRender } from "../lib/config";
 
 /*
@@ -18,7 +18,7 @@ Office.onReady(info => {
 async function render(event: Office.AddinCommands.Event) {
   try {
     await renderItem();
-    event.completed();
+    event.completed({ allowEvent: true });
   } catch (err) {
     const message: Office.NotificationMessageDetails = {
       type: Office.MailboxEnums.ItemNotificationMessageType.ErrorMessage,
@@ -34,13 +34,13 @@ async function render(event: Office.AddinCommands.Event) {
 
 async function onSend(event: Office.AddinCommands.Event) {
   if (!getAutoRender()) {
-    event.completed();
+    event.completed({ allowEvent: true });
     return;
   }
 
   try {
-    await renderItem();
-    event.completed();
+    await ensureRendered();
+    event.completed({ allowEvent: true });
   } catch (err) {
     const message: Office.NotificationMessageDetails = {
       type: Office.MailboxEnums.ItemNotificationMessageType.ErrorMessage,

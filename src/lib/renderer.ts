@@ -27,7 +27,7 @@ export interface RenderOptions {
     css?: string;
 }
 
-export const MO_CONTENT_PREFIX = () => `<div class="mo" id="mo-content-${(Math.random() * 100000).toFixed(0)}">\n`
+export const MO_CONTENT_PREFIX = () => `<div class="mo">\n`
 export const MO_CONTENT_SUFFIX = () => `</div>\n`
 
 export async function renderMarkdown({ markdown, css }: RenderOptions): Promise<string> {
@@ -43,9 +43,3 @@ export async function renderMarkdown({ markdown, css }: RenderOptions): Promise<
         removeHtmlSelectors: true,
     });
 }
-
-// export function renderEmail({ markdown, css }: RenderOptions): string {
-//     css = css || getStylesheet();
-
-//     const markdownText = markdown.split
-// }

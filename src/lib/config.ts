@@ -6,125 +6,128 @@ export const defaultStylesheet = `
   color: rgb(36,41,46);
 }
 
-.mo pre, .mo code {
-  font-size: 0.85em;
+code {
+  font-size: 1em;
+  line-height: 1.2em;
+  padding: 0;
+  margin: 0;
   font-family: Consolas, Inconsolata, Courier, monospace;
 }
 
-.mo code {
+pre {
+  margin: 1em !important;
+  padding: 1em !important;
+  border: 1px solid rgba(100, 100, 100, 0.2);
+  border-radius: 3px;
+}
+
+code {
   white-space: normal;
   display: inline-block;
   color: #B21D12;
 }
 
-.mo pre {
-  font-size: 1em;
-  line-height: 1.2em;
-}
-
-.mo pre code {
+pre code {
   white-space: pre;
   overflow: auto;
-  border-radius: 1px;
-  border: 1px solid #d8d8d8;
-  padding: 0.5em 0.7em;
   display: block !important;
   color: #000;
 }
 
-.mo p {
+p {
   margin: 0 0 1.2em 0 !important;
 }
 
-.mo table, .mo pre, .mo dl, .mo blockquote, .mo q, .mo ul, .mo ol {
-  margin: 1.2em 0;
+table, dl, blockquote, q, ul, ol {
+  margin: 1.2em 0 !important;
 }
 
-.mo ul, .mo ol {
+ul, ol {
   padding-left: 2em;
+  margin: 2em 0;
 }
 
-.mo li {
+li {
   margin: 0.5em 0;
 }
 
-.mo li p {
+li p {
   margin: 0.5em 0 !important;
 }
 
-.mo ul ul, .mo ul ol, .mo ol ul, .mo ol ol {
+ul ul, ul ol, ol ul, ol ol {
   margin: 0;
   padding-left: 1em;
 }
 
-.mo ol ol, .mo ul ol {
+ol ol, ul ol {
   list-style-type: lower-roman;
 }
 
-.mo ul ul ol, .mo ul ol ol, .mo ol ul ol, .mo ol ol ol {
+ul ul ol, ul ol ol, ol ul ol, ol ol ol {
   list-style-type: lower-alpha;
 }
 
-.mo dl {
+dl {
   padding: 0;
 }
 
-.mo dl dt {
+dl dt {
   font-size: 1em;
   font-weight: bold;
   font-style: italic;
 }
 
-.mo dl dd {
+dl dd {
   margin: 0 0 1em;
   padding: 0 1em;
 }
 
-.mo blockquote, .mo q {
+blockquote, q {
   border-left: 4px solid #DDD;
   padding: 0 1em;
   color: #777;
   quotes: none;
 }
 
-.mo blockquote::before, .mo blockquote::after, .mo q::before, .mo q::after {
+blockquote::before, blockquote::after, q::before, q::after {
   content: none;
 }
 
-.mo h1, .mo h2, .mo h3, .mo h4, .mo h5, .mo h6 {
+h1, h2, h3, h4, h5, h6 {
   margin: 1.3em 0 1em;
   padding: 0;
   font-weight: bold;
 }
 
-.mo h1 {
+h1 {
   font-size: 1.6em;
   border-bottom: 1px solid #ddd;
 }
 
-.mo h2 {
+h2 {
   font-size: 1.4em;
   border-bottom: 1px solid #eee;
 }
 
-.mo h3 {
+h3 {
   font-size: 1.3em;
 }
 
-.mo h4 {
+h4 {
   font-size: 1.2em;
 }
 
-.mo h5 {
+h5 {
   font-size: 1em;
 }
 
-.mo h6 {
+h6 {
   font-size: 1em;
   color: #777;
 }
 
-.mo table {
+table {
   padding: 0;
   border-collapse: collapse;
   border-spacing: 0;
@@ -133,13 +136,13 @@ export const defaultStylesheet = `
   border: 0;
 }
 
-.mo tbody {
+tbody {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-.mo table tr {
+table tr {
   border: 0;
   border-top: 1px solid #CCC;
   background-color: white;
@@ -147,28 +150,28 @@ export const defaultStylesheet = `
   padding: 0;
 }
 
-.mo table tr:nth-child(2n) {
+table tr:nth-child(2n) {
   background-color: #F8F8F8;
 }
 
-.mo table tr th, table tr td {
+table tr th, table tr td {
   font-size: 1em;
   border: 1px solid #CCC;
   margin: 0;
   padding: 0.5em 1em;
 }
 
-.mo table tr th {
+table tr th {
  font-weight: bold;
   background-color: #F0F0F0;
 }
 
-.mo a {
+a {
   color: #0366d6;
   text-decoration: none;
 }
 
-.mo .hljs {
+.hljs {
     display: block;
     font-family: Consolas, Inconsolata, Courier, monospace;
     overflow-x: auto;
@@ -176,28 +179,28 @@ export const defaultStylesheet = `
     color: black
 }
 
-.mo .hljs-variable,.hljs-template-variable,.hljs-symbol,.hljs-bullet,.hljs-section,.hljs-addition,.hljs-attribute,.hljs-link {
+.hljs-variable,.hljs-template-variable,.hljs-symbol,.hljs-bullet,.hljs-section,.hljs-addition,.hljs-attribute,.hljs-link {
     color: #333
 }
 
-.mo .hljs-string {
+.hljs-string {
     color: #B21D12;
 }
 
-.mo .hljs-comment,.hljs-quote,.hljs-meta,.hljs-deletion {
+.hljs-comment,.hljs-quote,.hljs-meta,.hljs-deletion {
     color: #ccc
 }
 
-.mo .hljs-keyword,.hljs-selector-tag,.hljs-section,.hljs-name,.hljs-type,.hljs-strong,.hljs-attr {
+.hljs-keyword,.hljs-selector-tag,.hljs-section,.hljs-name,.hljs-type,.hljs-strong,.hljs-attr {
     font-weight: bold
 }
 
-.mo .hljs-literal,.hljs-number {
+.hljs-literal,.hljs-number {
     color: #409EFF;
     font-weight: bold;
 }
 
-.mo .hljs-emphasis {
+.hljs-emphasis {
     font-style: italic
 }
 `;

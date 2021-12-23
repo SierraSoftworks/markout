@@ -19,6 +19,11 @@ Office.onReady(info => {
 
     const refreshButton = document.getElementById("mo-refresh");
     refreshButton.onclick = () => {
+      refreshDebug()
+      return false;
+    };
+
+    const refreshDebug = () => {
       getContent(Office.CoercionType.Html).then(content => {
         rawInput.value = content;
         const cleansed = cleanse(content)
@@ -31,9 +36,8 @@ Office.onReady(info => {
       }).catch(err => {
         rawOutput.value = `ERROR: ${err}\n${err.stack}`;
       })
+    }
 
-      return false;
-    };
-
+    refreshDebug()
   }
 });

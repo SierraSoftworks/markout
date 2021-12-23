@@ -66,7 +66,7 @@ content **pop** or show some \`code\`.
 console.log("Hello world!");
 \`\`\`
 
-:warning: You can use \`Ctrl+Z\` to undo rendering.
+:warning: You can use \`Ctrl+Z\` to undo rendering when using Outlook for Web, otherwise use the Toggle Markdown button.
 
 `.trim();
 

@@ -20,7 +20,7 @@
   </Hosts>
   <Requirements>
     <Sets>
-      <Set Name="Mailbox" MinVersion="1.1" />
+      <Set Name="Mailbox" MinVersion="1.3" />
     </Sets>
   </Requirements>
   <FormSettings>
@@ -143,11 +143,11 @@
         <bt:ShortStrings>
           <bt:String id="GroupLabel" DefaultValue="MarkOut"/>
           <bt:String id="OptionsButton.Label" DefaultValue="Change Settings"/>
-          <bt:String id="RenderButton.Label" DefaultValue="Render"/>
+          <bt:String id="RenderButton.Label" DefaultValue="Toggle Markdown"/>
         </bt:ShortStrings>
         <bt:LongStrings>
           <bt:String id="OptionsButton.Tooltip" DefaultValue="Modify options like your stylesheet and whether messages are automatically rendered."/>
-          <bt:String id="RenderButton.Tooltip" DefaultValue="Render Markdown in your email (Ctrl+Z to undo)."/>
+          <bt:String id="RenderButton.Tooltip" DefaultValue="Render Markdown in your email (Ctrl+Z or click here to undo)."/>
         </bt:LongStrings>
       </Resources>
     </VersionOverrides>

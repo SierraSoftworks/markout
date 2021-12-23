@@ -1,19 +1,70 @@
 import { renderMarkdown } from "./renderer";
 import { cleanse } from "./cleanser";
-import { PromiseSequencer } from "./mutex";
-
-const sequencer = new PromiseSequencer();
 
 export async function renderItem() {
-  return sequencer.do(async () => {
-    const current = await getContent(Office.CoercionType.Html);
+  const [current, customProperties] = await Promise.all([
+    getContent(Office.CoercionType.Html),
+    getCustomProperties()
+  ]);
 
+  const originalContent = getRenderState(customProperties)
+  if (originalContent) {
+    await Promise.all([
+      updateRenderState(customProperties, null),
+      setContent(originalContent, Office.CoercionType.Html),
+    ])
+  } else {
     const rendered = await renderMarkdown({
       markdown: cleanse(current)
     });
 
-    await setContent(rendered, Office.CoercionType.Html);
+    await Promise.all([
+      updateRenderState(customProperties, current),
+      setContent(rendered, Office.CoercionType.Html),
+    ]);
+  }
+}
+
+export async function ensureRendered() {
+  const [current, customProperties] = await Promise.all([
+    getContent(Office.CoercionType.Html),
+    getCustomProperties()
+  ]);
+
+  const originalContent = getRenderState(customProperties)
+  if (originalContent) {
+    return;
+  } else {
+    const rendered = await renderMarkdown({
+      markdown: cleanse(current)
+    });
+
+    await Promise.all([
+      updateRenderState(customProperties, current),
+      setContent(rendered, Office.CoercionType.Html),
+    ]);
+  }
+}
+
+export async function updateRenderState(customProperties: Office.CustomProperties, original: string): Promise<void> {
+  if (original)
+    customProperties.set("mo-original", original)
+  else
+    customProperties.remove("mo-original")
+
+  return await new Promise((resolve, reject) => {
+    customProperties.saveAsync(result => {
+      if (result.status === Office.AsyncResultStatus.Failed) {
+        return reject(result.error)
+      }
+
+      return resolve()
+    })
   })
+}
+
+export function getRenderState(customProperties: Office.CustomProperties): string {
+  return customProperties.get("mo-original")
 }
 
 export function getCustomProperties(): Promise<Office.CustomProperties> {
@@ -43,7 +94,7 @@ export async function getContent(type: Office.CoercionType = Office.CoercionType
 export function setContent(value: string, type: Office.CoercionType = Office.CoercionType.Html): Promise<void> {
   return new Promise((resolve, reject) => {
     Office.context.mailbox.item.body.setAsync(value, {
-      coercionType: type
+      coercionType: type,
     }, result => {
       if (result.status === Office.AsyncResultStatus.Failed)
         return reject(result.error);
