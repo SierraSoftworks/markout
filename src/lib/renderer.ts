@@ -1,7 +1,9 @@
 import * as inlineCss from "inline-css";
-import * as hljs from "highlight.js";
+import hljs from "highlight.js";
 import * as mdit from "markdown-it";
 import { getStylesheet } from "./config";
+
+
 
 const md: mdit = mdit({
     html: true,

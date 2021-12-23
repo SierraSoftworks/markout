@@ -1,26 +1,23 @@
 export function cleanse(text: string): string {
     const dom = new DOMParser().parseFromString(`${text}`, "text/html")
     
-    const newDom = dom.createElement("pre");
-    forEach(dom.body.childNodes, node => {
-        newDom.append(...cleanseNode(dom, node))
-    })
+    const lines = [].concat(...toArray(dom.body.childNodes).map(node => cleanseNode(dom, node)))
 
-    return cleanseHtmlEscapes(dom, (<HTMLElement>newDom).innerHTML)
+    return lines.join("").trim()
 }
 
-function cleanseNode(dom: Document, node: Node): Node[] {
+function cleanseNode(dom: Document, node: Node): string[] {
     switch (node.nodeType) {
         case dom.ELEMENT_NODE:
             return cleanseElement(dom, node as Element)
         case dom.TEXT_NODE:
-            return [dom.createTextNode(cleanseText(dom, node.textContent))]
+            return [cleanseText(dom, node.textContent)]
         default:
-            return [node]
+            return [node.textContent]
     }
 }
 
-function cleanseElement(dom: Document, el: Element): Node[] {
+function cleanseElement(dom: Document, el: Element): string[] {
     switch (el.tagName.toLowerCase()) {
         case "script":
             return []
@@ -29,69 +26,37 @@ function cleanseElement(dom: Document, el: Element): Node[] {
         case "a":
             // Flatten automatically generated links
             if (el.innerHTML === el.getAttribute("href"))
-                return [dom.createTextNode(el.getAttribute("href"))]
-            return [el]
+                return [el.getAttribute("href")]
+            return [el.outerHTML]
         case "img":
-            return [el, dom.createTextNode("\n")]
+            return [el.outerHTML.replace(/\n+/g, '\n')]
         case "div":
+        case "p":
+            return [...cleanseElementContainer(dom, el), "\n"]
         case "span":
             return cleanseElementContainer(dom, el);
         default:
-            return [el]
+            return [el.outerHTML]
     }
 }
 
-function cleanseElementContainer(dom: Document, container: Element, simplifyNode: boolean = true): Node[] {
+function cleanseElementContainer(dom: Document, container: Element): string[] {
     // Ignore containers with IDs (except if that ID is an emoji)
     if (container.id && container.id.split("").every(c => c.charCodeAt(0) < 128))
-        return [container];
+        return [container.outerHTML];
 
-    const newContainer = dom.createElement(container.tagName)
-
-    toArray(container.childNodes).forEach(node => {
-        cleanseNode(dom, node).forEach(cleansed => {
-            if (!isEmpty(dom, cleansed))
-                newContainer.appendChild(cleansed)
-        })
-    })
-
-    if (!simplifyNode) return [newContainer]
-
-    if (toArray(newContainer.childNodes).every(n => n.nodeType === dom.TEXT_NODE))
-        return [dom.createTextNode(cleanseText(dom, newContainer.textContent) + "\n")]
-
-    return toArray(newContainer.childNodes)
-}
-
-function isEmpty(dom: Document, node: Node) {
-    switch (node.nodeType) {
-        case dom.TEXT_NODE:
-            return !node.textContent
-        case dom.ELEMENT_NODE:
-            const el = (node as Element);
-            switch (el.tagName.toLowerCase()) {
-                case "img":
-                    return false
-                default:
-                    return !node.childNodes.length
-            }
-        default:
-            return false
-    }
+    return [].concat(...toArray(container.childNodes).map(node => cleanseNode(dom, node)))
 }
 
 function cleanseText(dom: Document, text: string): string {
-    const container = dom.createElement("span")
-    container.innerHTML = text;
-    return container.textContent.replace(/^\n*(.+?)\n*$/, "$1")
-}
+    const container = dom.createElement("span");
+    container.innerHTML = text.replace(/[\u007F-\u009F]/g, "").replace(/[\u00a0]/g, " ");
+    if (!container.innerHTML.trim()) return ""
 
-function cleanseHtmlEscapes(dom: Document, text: string): string {
-    return text.replace(/&[^\s;]+;/g, sequence => {
-        const el = dom.createElement("span")
-        el.innerHTML = sequence
-        return el.textContent
-    })
+    return container.textContent
+        .replace(/^(\r?\n)+/, "\n")
+        .replace(/(\r?\n)+$/, "\n")
+        .replace(/(.+)[\r\n]+(.+)/g, "$1 $2")
 }
 
 interface Collection<T> {

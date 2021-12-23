@@ -10,7 +10,8 @@ module.exports = async (env, options) => {
     target: "web",
     entry: {
       taskpane: "./src/taskpane/taskpane.ts",
-      commands: "./src/commands/commands.ts"
+      commands: "./src/commands/commands.ts",
+      debug: "./src/debug/debug.ts",
     },
     resolve: {
       extensions: [".ts", ".tsx", ".html", ".js"],
@@ -22,6 +23,7 @@ module.exports = async (env, options) => {
         "fs": false,
         "os": require.resolve("os-browserify/browser"),
         "stream": require.resolve("stream-browserify"),
+        "url": false,
       }
     },
     module: {
@@ -56,14 +58,22 @@ module.exports = async (env, options) => {
         filename: "commands.html",
         template: "./src/commands/commands.html",
         chunks: ["polyfill", "commands"]
+      }),
+      new HtmlWebpackPlugin({
+        filename: "debug.html",
+        template: "./src/debug/debug.html",
+        chunks: ["polyfill", "debug"]
       })
     ],
     devServer: {
       headers: {
         "Access-Control-Allow-Origin": "*"
       },
-      https: (options.https !== undefined) ? options.https : await devCerts.getHttpsServerOptions().catch(err => {}),
-      port: process.env.npm_package_config_dev_server_port || 3000
+      port: process.env.npm_package_config_dev_server_port || 3000,
+      server: {
+        type: 'https',
+        options: (options.https !== undefined) ? options.https : await devCerts.getHttpsServerOptions().catch(err => {}),
+      }
     }
   };
 

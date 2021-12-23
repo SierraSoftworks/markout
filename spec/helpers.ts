@@ -6,7 +6,7 @@ export function readFile(name: string, stripNewlines: boolean = false): string {
 
     content = content.replace(/\r/g, "")
     if (stripNewlines)
-        content = content.replace(/\n/g, "")
+        content = content.replace(/\r?\n/g, "").trim()
 
     return content
 }

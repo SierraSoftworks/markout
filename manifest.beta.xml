@@ -7,13 +7,14 @@
   <Version>1.0.0.0</Version>
   <ProviderName>Sierra Softworks</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="MarkOut"/>
+  <DisplayName DefaultValue="MarkOut (Beta)"/>
   <Description DefaultValue="Write your emails in Markdown, natively within Outlook."/>
-  <IconUrl DefaultValue="https://markout.sierrasoftworks.com/outlook-beta/assets/icon-32.png"/>
+  <IconUrl DefaultValue="https://markout.sierrasoftworks.com/outlook-beta/assets/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://markout.sierrasoftworks.com/outlook-beta/assets/icon-128.png"/>
-  <SupportUrl DefaultValue="https://sierrasoftworks.com/"/>
+  <SupportUrl DefaultValue="https://github.com/SierraSoftworks/markout"/>
   <AppDomains>
-    <AppDomain>https://markout.sierrasoftworks.com</AppDomain>
+    <AppDomain>https://sierrasoftworks.com</AppDomain>
+    <AppDomain>https://markout.sierrasoftworks.com/outlook-beta</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Mailbox" />
@@ -86,6 +87,21 @@
                       <SourceLocation resid="Taskpane.Url" />
                     </Action>
                   </Control>
+                  <Control xsi:type="Button" id="msgMarkoutOpenDebugPaneButton">
+                    <Label resid="DebugButton.Label" />
+                    <Supertip>
+                      <Title resid="DebugButton.Label" />
+                      <Description resid="DebugButton.Tooltip" />
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="Icon.16x16" />
+                      <bt:Image size="32" resid="Icon.32x32" />
+                      <bt:Image size="80" resid="Icon.128x128"/>
+                    </Icon>
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="DebugPane.Url" />
+                    </Action>
+                  </Control>
                 </Group>
               </OfficeTab>
             </ExtensionPoint>
@@ -124,6 +140,21 @@
                       <SourceLocation resid="Taskpane.Url" />
                     </Action>
                   </Control>
+                  <Control xsi:type="Button" id="mtngMarkoutOpenDebugPaneButton">
+                    <Label resid="DebugButton.Label" />
+                    <Supertip>
+                      <Title resid="DebugButton.Label" />
+                      <Description resid="DebugButton.Tooltip" />
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="Icon.16x16" />
+                      <bt:Image size="32" resid="Icon.32x32" />
+                      <bt:Image size="80" resid="Icon.128x128"/>
+                    </Icon>
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="DebugPane.Url" />
+                    </Action>
+                  </Control>
                 </Group>
               </OfficeTab>
             </ExtensionPoint>
@@ -139,15 +170,18 @@
         <bt:Urls>
           <bt:Url id="Commands.Url" DefaultValue="https://markout.sierrasoftworks.com/outlook-beta/commands.html" />
           <bt:Url id="Taskpane.Url" DefaultValue="https://markout.sierrasoftworks.com/outlook-beta/taskpane.html" />
+          <bt:Url id="DebugPane.Url" DefaultValue="https://markout.sierrasoftworks.com/outlook-beta/debug.html" />
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="GroupLabel" DefaultValue="MarkOut"/>
           <bt:String id="OptionsButton.Label" DefaultValue="Change Settings"/>
-          <bt:String id="RenderButton.Label" DefaultValue="Render"/>
+          <bt:String id="RenderButton.Label" DefaultValue="Toggle Markdown"/>
+          <bt:String id="DebugButton.Label" DefaultValue="Debug Tools"/>
         </bt:ShortStrings>
         <bt:LongStrings>
           <bt:String id="OptionsButton.Tooltip" DefaultValue="Modify options like your stylesheet and whether messages are automatically rendered."/>
-          <bt:String id="RenderButton.Tooltip" DefaultValue="Render Markdown in your email (Ctrl+Z to undo)."/>
+          <bt:String id="RenderButton.Tooltip" DefaultValue="Switch between a preview of your raw and rendered Markdown."/>
+          <bt:String id="DebugButton.Tooltip" DefaultValue="Open the debug tools to help understand how Markout is working."/>
         </bt:LongStrings>
       </Resources>
     </VersionOverrides>

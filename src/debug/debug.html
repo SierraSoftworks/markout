@@ -1,0 +1,62 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
+<!-- This file shows how to design a first-run page that provides a welcome screen to the user about the features of the add-in. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MarkOut</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+
+    <!-- For more information on Office UI Fabric, visit https://developer.microsoft.com/en-us/fluentui. -->
+    <link rel="stylesheet"
+        href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css" />
+
+    <!-- Template styles -->
+    <link href="debug.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ms-font-m mo-welcome ms-Fabric">
+    <header id="mo-preview" class="mo-welcome__header">
+
+    </header>
+    <section id="sideload-msg" class="mo-welcome__main">
+        <h2 class="ms-font-xl">Please sideload your add-in to be able to use it.</h2>
+    </section>
+
+    <main id="app-body" class="mo-welcome__main ms-bgColor-neutralLighter" style="display: none;">
+        <h3>
+            <i class="ms-Icon ms-Icon--CSS ms-font-xl"></i>
+            <span class="ms-font-m">Raw Input</span>
+        </h3>
+
+        <textarea name="raw-in" id="mo-raw-in" rows="20" class="mo-raw-editor"></textarea>
+
+        <h3>
+            <i class="ms-Icon ms-Icon--CSS ms-font-xl"></i>
+            <span class="ms-font-m">Cleansed Input</span>
+        </h3>
+
+        <textarea name="raw-in" id="mo-cleansed-in" rows="20" class="mo-raw-editor"></textarea>
+
+        <h3>
+            <i class="ms-Icon ms-Icon--CSS ms-font-xl"></i>
+            <span class="ms-font-m">Raw Output</span>
+        </h3>
+
+        <textarea name="raw-out" id="mo-raw-out" rows="20" class="mo-raw-editor"></textarea>
+        <div id="mo-raw-out-rendered"></div>
+
+        <a id="mo-refresh" class="mo-button" href="">
+            <i class="ms-Icon ms-Icon--FabricTextHighlight"></i>
+            <span>Refresh</span>
+        </a>
+    </main>
+</body>
+
+</html>

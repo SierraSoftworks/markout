@@ -9,7 +9,7 @@
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="MarkOut"/>
   <Description DefaultValue="Write your emails in Markdown, natively within Outlook."/>
-  <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
+  <IconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-128.png"/>
   <SupportUrl DefaultValue="https://sierrasoftworks.com/"/>
   <AppDomains>
@@ -87,6 +87,21 @@
                       <SourceLocation resid="Taskpane.Url" />
                     </Action>
                   </Control>
+                  <Control xsi:type="Button" id="msgMarkoutOpenDebugPaneButton">
+                    <Label resid="DebugButton.Label" />
+                    <Supertip>
+                      <Title resid="DebugButton.Label" />
+                      <Description resid="DebugButton.Tooltip" />
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="Icon.16x16" />
+                      <bt:Image size="32" resid="Icon.32x32" />
+                      <bt:Image size="80" resid="Icon.128x128"/>
+                    </Icon>
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="DebugPane.Url" />
+                    </Action>
+                  </Control>
                 </Group>
               </OfficeTab>
             </ExtensionPoint>
@@ -125,6 +140,21 @@
                       <SourceLocation resid="Taskpane.Url" />
                     </Action>
                   </Control>
+                  <Control xsi:type="Button" id="mtngMarkoutOpenDebugPaneButton">
+                    <Label resid="DebugButton.Label" />
+                    <Supertip>
+                      <Title resid="DebugButton.Label" />
+                      <Description resid="DebugButton.Tooltip" />
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="Icon.16x16" />
+                      <bt:Image size="32" resid="Icon.32x32" />
+                      <bt:Image size="80" resid="Icon.128x128"/>
+                    </Icon>
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="DebugPane.Url" />
+                    </Action>
+                  </Control>
                 </Group>
               </OfficeTab>
             </ExtensionPoint>
@@ -140,15 +170,18 @@
         <bt:Urls>
           <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html" />
           <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html" />
+          <bt:Url id="DebugPane.Url" DefaultValue="https://localhost:3000/debug.html" />
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="GroupLabel" DefaultValue="MarkOut"/>
           <bt:String id="OptionsButton.Label" DefaultValue="Change Settings"/>
           <bt:String id="RenderButton.Label" DefaultValue="Toggle Markdown"/>
+          <bt:String id="DebugButton.Label" DefaultValue="Debug Tools"/>
         </bt:ShortStrings>
         <bt:LongStrings>
           <bt:String id="OptionsButton.Tooltip" DefaultValue="Modify options like your stylesheet and whether messages are automatically rendered."/>
           <bt:String id="RenderButton.Tooltip" DefaultValue="Switch between a preview of your raw and rendered Markdown."/>
+          <bt:String id="DebugButton.Tooltip" DefaultValue="Open the debug tools to help understand how Markout is working."/>
         </bt:LongStrings>
       </Resources>
     </VersionOverrides>

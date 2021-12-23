@@ -11,6 +11,5 @@ And some true paragraphs.
 
 > Awesome!
 
-
-
-<img originalsrc="cid:18baea5f-c601-4657-a0b0-b53ba36c5059" size="11236937" contenttype="image/png" style="max-width: 100%; user-select: none;" crossorigin="use-credentials" src="https://attachments.office.net/owa/test%40example.com/service.svc/s/GetAttachmentThumbnail?id=AAMkADLTY2NDgtNDAzYS0" unselectable="on" tabindex="-1">
+<img width="250" height="250" style="width:2.6041in;height:2.6041in" id="Picture 1" src="~WRS%7bE6AC67B9-AFAF-EA47-B4D7-6EEEC49AD857%7d.fld/image001.jpg" alt="Text
+Description automatically generated">
