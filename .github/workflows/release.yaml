@@ -79,7 +79,7 @@ jobs:
     
     steps:
       - name: Download Artifacts for Website (Staging)
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: site-staging
           path: ./out
@@ -109,7 +109,7 @@ jobs:
     
     steps:
       - name: Download Artifacts for Website (Live)
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: site-live
           path: ./out
