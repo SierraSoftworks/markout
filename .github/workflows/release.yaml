@@ -49,7 +49,7 @@ jobs:
         cp -R dist/* ./out/staging/
         
     - name: Upload Artifact (Staging)
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         # Artifact name
         name: site-staging
@@ -65,7 +65,7 @@ jobs:
         cp -R dist/* ./out/live/
 
     - name: Upload Artifact for Website (Live)
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         # Artifact name
         name: site-live
