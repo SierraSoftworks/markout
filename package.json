@@ -67,7 +67,7 @@
     "@types/chai": "^4.3.1",
     "@types/expect": "^24.3.0",
     "@types/highlight.js": "^10.1.0",
-    "@types/jsdom": "^16.2.14",
+    "@types/jsdom": "^16.2.15",
     "@types/jest": "^27.5.0",
     "@types/office-js": "^1.0.267",
     "@types/office-runtime": "^1.0.25",
