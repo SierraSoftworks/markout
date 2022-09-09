@@ -85,7 +85,7 @@ jobs:
           path: ./out
           
       - name: Login to Azure
-        uses: azure/login@v1.4.5
+        uses: azure/login@v1.4.6
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           
@@ -115,7 +115,7 @@ jobs:
           path: ./out
           
       - name: Login to Azure
-        uses: azure/login@v1.4.5
+        uses: azure/login@v1.4.6
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           
