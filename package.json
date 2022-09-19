@@ -76,7 +76,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "chai": "^4.3.6",
     "clean-webpack-plugin": "^4.0.0",
-    "core-js": "^3.25.1",
+    "core-js": "^3.25.2",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
     "html-loader": "^4.1.0",
