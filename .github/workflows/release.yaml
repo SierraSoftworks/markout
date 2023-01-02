@@ -80,6 +80,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     if: github.actor != 'dependabot[bot]'
+
+    environment:
+      name: Staging
+      url: https://markout.sierrasoftworks.com/outlook-beta/manifest.xml
     
     steps:
       - name: Download Artifacts for Website (Staging)
@@ -112,6 +116,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build, deploy-staging]
     if: github.event_name == 'push'
+
+    environment:
+      name: Production
+      url: https://markout.sierrasoftworks.com/outlook/manifest.xml
     
     steps:
       - name: Download Artifacts for Website (Live)
