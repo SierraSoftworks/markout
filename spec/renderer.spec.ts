@@ -1,5 +1,9 @@
 import { renderMarkdown } from "../src/lib/renderer"
 import { expect } from "chai";
+import { JSDOM } from "jsdom"
+
+const jsdom = new JSDOM()
+global["DOMParser"] = jsdom.window.DOMParser;
 
 describe("renderer", () => {
     it("should generate HTML for basic markdown", async () => {

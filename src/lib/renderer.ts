@@ -35,11 +35,14 @@ export async function renderMarkdown({ markdown, css }: RenderOptions): Promise<
 
     const raw = `${MO_CONTENT_PREFIX()}${md.render(markdown)}${MO_CONTENT_SUFFIX()}`;
 
-    return await inlineCss(raw, {
+    const rendered = await inlineCss(raw, {
         extraCss: css,
         url: " ",
         removeStyleTags: true,
         removeLinkTags: true,
         removeHtmlSelectors: true,
     });
+
+    const dom = new DOMParser().parseFromString(rendered, "text/html");
+    return dom.body.innerHTML;
 }
