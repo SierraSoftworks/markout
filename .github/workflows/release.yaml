@@ -7,18 +7,22 @@ on:
     branches: [ main ]
 
 env:
+  STAGING_DEPLOYMENT_CLIENT_ID: 2077f1e2-33b1-4ce0-b598-e03998ca0bcd
   STAGING_STORAGE_CONTAINER: "outlook-beta"
   STAGING_STORAGE_ACCOUNT: "markout"
   STAGING_CDN_RESOURCEGROUP: app-markout
   STAGING_CDN_PROFILE: "sierrasoftworks-markout"
   STAGING_CDN_ENDPOINT: "markout"
 
+  LIVE_DEPLOYMENT_CLIENT_ID: 1ef88db7-5e08-4ea4-818e-2bb43f97cedd
   LIVE_STORAGE_CONTAINER: "outlook"
   LIVE_STORAGE_ACCOUNT: "markout"
   LIVE_CDN_RESOURCEGROUP: app-markout
   LIVE_CDN_PROFILE: "sierrasoftworks-markout"
   LIVE_CDN_ENDPOINT: "markout"
   
+permissions:
+  id-token: write
 
 jobs:
   build:
@@ -85,9 +89,11 @@ jobs:
           path: ./out
           
       - name: Login to Azure
-        uses: azure/login@v1.4.6
+        uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          subscription-id: "108b3ddb-53fb-4344-80b2-d6c151912be6"
+          tenant-id: "a26571f1-22b3-4756-ac7b-39ca684fab48"
+          client-id: ${{ env.STAGING_DEPLOYMENT_CLIENT_ID }}
           
       - name: Copy Artifacts to Storage
         uses: azure/CLI@v1.0.7
@@ -115,9 +121,11 @@ jobs:
           path: ./out
           
       - name: Login to Azure
-        uses: azure/login@v1.4.6
+        uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          subscription-id: "108b3ddb-53fb-4344-80b2-d6c151912be6"
+          tenant-id: "a26571f1-22b3-4756-ac7b-39ca684fab48"
+          client-id: ${{ env.LIVE_DEPLOYMENT_CLIENT_ID }}
           
       - name: Copy Artifacts to Storage
         uses: azure/CLI@v1.0.7
