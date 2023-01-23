@@ -82,7 +82,7 @@
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.5.1",
-    "jsdom": "^21.0.0",
+    "jsdom": "^21.1.0",
     "office-addin-debugging": "^4.6.7",
     "office-addin-dev-certs": "^1.11.1",
     "office-toolbox": "^0.3.0",
