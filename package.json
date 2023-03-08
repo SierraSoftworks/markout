@@ -69,7 +69,7 @@
     "@types/highlight.js": "^10.1.0",
     "@types/jest": "^27.5.0",
     "@types/jsdom": "^21.1.0",
-    "@types/office-js": "^1.0.316",
+    "@types/office-js": "^1.0.317",
     "@types/office-runtime": "^1.0.29",
     "babel-loader": "^9.1.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
