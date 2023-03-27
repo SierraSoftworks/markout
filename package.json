@@ -84,7 +84,7 @@
     "jest": "^27.5.1",
     "jsdom": "^21.1.1",
     "office-addin-debugging": "^5.0.4",
-    "office-addin-dev-certs": "^1.11.1",
+    "office-addin-dev-certs": "^1.11.3",
     "office-toolbox": "^0.3.0",
     "source-map-loader": "^4.0.1",
     "style-loader": "^3.3.2",
