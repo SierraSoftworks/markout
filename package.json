@@ -50,7 +50,7 @@
     "@types/markdown-it": "^13.0.5",
     "assert": "^2.1.0",
     "buffer": "^6.0.3",
-    "highlight.js": "^11.8.0",
+    "highlight.js": "^11.9.0",
     "https-browserify": "^1.0.0",
     "inline-css": "^4.0.2",
     "markdown-it": "^13.0.2",
