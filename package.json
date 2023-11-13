@@ -83,7 +83,7 @@
     "html-webpack-plugin": "^5.5.3",
     "jest": "^27.5.1",
     "jsdom": "^21.1.2",
-    "office-addin-debugging": "^5.0.13",
+    "office-addin-debugging": "^5.0.14",
     "office-addin-dev-certs": "^1.12.0",
     "office-toolbox": "^0.3.0",
     "source-map-loader": "^4.0.1",
