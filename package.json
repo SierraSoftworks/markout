@@ -62,7 +62,7 @@
   "devDependencies": {
     "@babel/core": "^7.23.6",
     "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.23.5",
+    "@babel/preset-env": "^7.23.6",
     "@babel/preset-typescript": "^7.23.3",
     "@types/chai": "^4.3.11",
     "@types/expect": "^24.3.0",
