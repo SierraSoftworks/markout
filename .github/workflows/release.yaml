@@ -100,13 +100,13 @@ jobs:
           client-id: ${{ env.STAGING_DEPLOYMENT_CLIENT_ID }}
           
       - name: Copy Artifacts to Storage
-        uses: azure/CLI@v1.0.8
+        uses: azure/CLI@v1.0.9
         with:
           inlineScript: |
             echo "Uploading Site Contents"
             az storage blob sync --container '${{ env.STAGING_STORAGE_CONTAINER }}' --account-name ${{ env.STAGING_STORAGE_ACCOUNT }} --source ./out
       - name: Purge Azure CDN
-        uses: azure/CLI@v1.0.8
+        uses: azure/CLI@v1.0.9
         with:
           inlineScript: |
             echo "Purging CDN"
@@ -136,13 +136,13 @@ jobs:
           client-id: ${{ env.LIVE_DEPLOYMENT_CLIENT_ID }}
           
       - name: Copy Artifacts to Storage
-        uses: azure/CLI@v1.0.8
+        uses: azure/CLI@v1.0.9
         with:
           inlineScript: |
             echo "Uploading Site Contents"
             az storage blob sync --container '${{ env.LIVE_STORAGE_CONTAINER }}' --account-name ${{ env.LIVE_STORAGE_ACCOUNT }} --source ./out
       - name: Purge Azure CDN
-        uses: azure/CLI@v1.0.8
+        uses: azure/CLI@v1.0.9
         with:
           inlineScript: |
             echo "Purging CDN"
