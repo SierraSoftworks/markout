@@ -86,7 +86,7 @@
     "office-addin-debugging": "^5.0.14",
     "office-addin-dev-certs": "^1.12.0",
     "office-toolbox": "^0.3.0",
-    "source-map-loader": "^4.0.1",
+    "source-map-loader": "^4.0.2",
     "style-loader": "^3.3.3",
     "terser-webpack-plugin": "^5.3.9",
     "ts-jest": "^27.1.4",
