@@ -63,7 +63,7 @@
     "@babel/core": "^7.24.9",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.24.4",
-    "@babel/preset-typescript": "^7.24.1",
+    "@babel/preset-typescript": "^7.24.7",
     "@types/chai": "^4.3.16",
     "@types/expect": "^24.3.0",
     "@types/highlight.js": "^10.1.0",
