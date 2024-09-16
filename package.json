@@ -71,7 +71,7 @@
     "@types/jsdom": "^21.1.1",
     "@types/office-js": "^1.0.422",
     "@types/office-runtime": "^1.0.35",
-    "babel-loader": "^9.1.3",
+    "babel-loader": "^9.2.1",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "chai": "^4.5.0",
