@@ -34,7 +34,7 @@ jobs:
         submodules: true
         
     - name: Setup Node.js environment
-      uses: actions/setup-node@v6.1.0
+      uses: actions/setup-node@v6.2.0
       with:
         node-version: 14.x
     
