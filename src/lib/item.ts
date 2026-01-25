@@ -11,7 +11,7 @@ export async function renderItem() {
   if (originalContent) {
     await Promise.all([
       updateRenderState(customProperties, null),
-      setContent(originalContent, Office.CoercionType.Html),
+      setContent(cleanse(current), Office.CoercionType.Html),
     ])
   } else {
     const rendered = await renderMarkdown({
@@ -48,7 +48,7 @@ export async function ensureRendered() {
 
 export async function updateRenderState(customProperties: Office.CustomProperties, original: string): Promise<void> {
   if (original)
-    customProperties.set("mo-original", original)
+    customProperties.set("mo-original", "false")
   else
     customProperties.remove("mo-original")
 
