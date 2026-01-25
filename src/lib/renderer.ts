@@ -1,6 +1,6 @@
-import * as inlineCss from "inline-css";
+import inlineCss from "inline-css";
 import hljs from "highlight.js";
-import * as mdit from "markdown-it";
+import mdit from "markdown-it";
 import { getStylesheet } from "./config";
 
 

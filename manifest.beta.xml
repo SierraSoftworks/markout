@@ -50,7 +50,7 @@
             <FunctionFile resid="Commands.Url" />
 
             <ExtensionPoint xsi:type="Events">
-              <!-- <Event Type="ItemSend" FunctionExecution="synchronous" FunctionName="onSend"/> -->
+              <Event Type="ItemSend" FunctionExecution="synchronous" FunctionName="onSend"/>
             </ExtensionPoint>
 
             <ExtensionPoint xsi:type="MessageComposeCommandSurface">
