@@ -19,7 +19,7 @@ const md: mdit = mdit({
     }
 })
     .use(require('markdown-it-footnote'))
-    .use(require('markdown-it-emoji'));
+    .use(require('markdown-it-emoji').full);
 
 
 export interface RenderOptions {

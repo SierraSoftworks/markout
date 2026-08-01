@@ -1,5 +1,4 @@
 import {PromiseSequencer} from "../src/lib/mutex";
-import { expect } from "chai";
 
 describe("mutex", () => {
     it("should run promises in sequence", () => {
@@ -22,8 +21,8 @@ describe("mutex", () => {
         })
 
         return Promise.all(tasks).then(() => {
-            expect(run).eql(expected)
-            expect(completed).eql(expected)
+            expect(run).toEqual(expected)
+            expect(completed).toEqual(expected)
         })
     })
 })

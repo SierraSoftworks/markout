@@ -27,7 +27,7 @@ jobs:
     - name: Setup Node.js environment
       uses: actions/setup-node@v7.0.0
       with:
-        node-version: 14.x
+        node-version: 22.x
 
     - name: Install Dependencies
       run: npm install

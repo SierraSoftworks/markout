@@ -1,10 +1,5 @@
 import { readFile } from "./helpers";
 import { cleanse } from "../src/lib/cleanser";
-import { expect } from "chai";
-import { JSDOM } from "jsdom"
-
-const jsdom = new JSDOM()
-global["DOMParser"] = jsdom.window.DOMParser;
 
 const tests: {
     name: string,
@@ -82,70 +77,70 @@ describe("cleanser", function () {
             let input = readFile(test.inputFile, test.stripNewlines)
             let expected = readFile(test.outputFile).split("\n")
 
-            expect(cleanse(input).split("\n")).to.eql(expected)
+            expect(cleanse(input).split("\n")).toEqual(expected)
         })
     })
 
     describe("when cleansing a text node", () => {
         it("should return the inner text", () => {
-            expect(cleanse("this is a test")).to.be.eql("this is a test")
+            expect(cleanse("this is a test")).toEqual("this is a test")
         })
 
         it("should replace inline newlines with spaces", () => {
-            expect(cleanse("this is a test\nwith inline spaces")).to.be.eql("this is a test with inline spaces")
+            expect(cleanse("this is a test\nwith inline spaces")).toEqual("this is a test with inline spaces")
         })
     })
 
     describe("when cleansing a comment node", () => {
         it("should return nothing", () => {
-            expect(cleanse("<!-- this is a comment -->")).to.be.eql("")
+            expect(cleanse("<!-- this is a comment -->")).toEqual("")
         })
     })
 
     describe("when cleansing a script node", () => {
         it("should return nothing", () => {
-            expect(cleanse("<script>this is a script</script>")).to.be.eql("")
+            expect(cleanse("<script>this is a script</script>")).toEqual("")
         })
     })
 
     describe("when cleansing a style node", () => {
         it("should return nothing", () => {
-            expect(cleanse("<style>this is a style</style>")).to.be.eql("")
+            expect(cleanse("<style>this is a style</style>")).toEqual("")
         })
     })
 
     describe("when cleansing an element node", () => {
         describe("for a simple element node", () => {
             it("should return the inner text", () => {
-                expect(cleanse("<div>this is a div</div>")).to.be.eql("this is a div")
-                expect(cleanse("<p>this is a paragraph</p>")).to.be.eql("this is a paragraph")
+                expect(cleanse("<div>this is a div</div>")).toEqual("this is a div")
+                expect(cleanse("<p>this is a paragraph</p>")).toEqual("this is a paragraph")
             })
         })
 
         describe("for an image node", () => {
             it("should return the node unchanged", () => {
-                expect(cleanse(`<img src="https://google.com/favicon.ico" id="test">`)).to.be.eql(`<img src="https://google.com/favicon.ico" id="test">`)
+                expect(cleanse(`<img src="https://google.com/favicon.ico" id="test">`)).toEqual(`<img src="https://google.com/favicon.ico" id="test">`)
             })
 
             it("should handle escaped properties in attributes", () => {
-                expect(cleanse(`<img src="https://google.com/favicon.ico" alt="Test&#10;Newline">`)).to.be.eql(`<img src="https://google.com/favicon.ico" alt="Test\nNewline">`)
+                expect(cleanse(`<img src="https://google.com/favicon.ico" alt="Test&#10;Newline">`)).toEqual(`<img src="https://google.com/favicon.ico" alt="Test\nNewline">`)
             })
         })
 
         describe("for a sequence of nodes", () => {
             it("should separate divs with newlines", () => {
-                expect(cleanse(`<div>this is a div</div><div>this is another div</div>`)).to.be.eql("this is a div\nthis is another div")
+                expect(cleanse(`<div>this is a div</div><div>this is another div</div>`)).toEqual("this is a div\nthis is another div")
             })
 
             it("should treat divs that contain only a <br> as a single newline", () => {
-                expect(cleanse(`<div>this is a div<br></div><div><br></div><div>this is another div</div>`)).to.be.eql("this is a div\n\nthis is another div")   
+                expect(cleanse(`<div>this is a div<br></div><div><br></div><div>this is another div</div>`)).toEqual("this is a div\n\nthis is another div")   
             })
         })
 
         describe("for a tree of nodes", () => {
             it("should merge child trees with newlines", () => {
-                expect(cleanse(`<div><div>a</div><div>b</div></div>`)).to.be.eql("a\nb")
-                expect(cleanse(`<div><div>a</div><div><br></div><div>b</div></div>`)).to.be.eql("a\n\nb")
+                expect(cleanse(`<div><div>a</div><div>b</div></div>`)).toEqual("a\nb")
+                expect(cleanse(`<div><div>a</div><div><br></div><div>b</div></div>`)).toEqual("a\n\nb")
             })
         })
     })
