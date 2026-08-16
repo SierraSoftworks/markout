@@ -5,7 +5,7 @@ import { getStylesheet } from "./config";
 
 
 
-const md: mdit = mdit({
+const md: mdit.MarkdownIt = mdit({
     html: true,
     breaks: false,
     highlight: function (str, lang) {
