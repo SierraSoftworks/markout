@@ -79,7 +79,7 @@
     "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.6.3",
     "jest": "^30.4.2",
-    "jest-environment-jsdom": "^30.4.1",
+    "jest-environment-jsdom": "^30.5.2",
     "office-addin-debugging": "^7.0.0",
     "office-addin-dev-certs": "^2.0.10",
     "office-toolbox": "^0.3.0",
